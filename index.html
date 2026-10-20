@@ -15,11 +15,16 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
+            text-align: center;
+            height: 100vh;
+            width: 100vw;
         }
 
         h1 {
             text-align: center;
             margin-top: 20px;
+
+            text-transform: capitalize;
 
         }
 
@@ -65,11 +70,28 @@
             text-align: center;
             text-transform: capitalize;
         }
+
+        @media (max-width: 768px) {
+            section {
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            .preview {
+                width: 100%;
+            }
+
+            iframe {
+                width: 100%;
+                height: 300px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <h1>Casamento design</h1>
+    <h1>design de convites</h1>
 
     <section>
         <div class="preview">
@@ -82,24 +104,6 @@
             <!-- Exemplo de preview de uma página externa -->
             <iframe src="marsala.html" width="600" height="400" title="Preview do Site"></iframe>
             <button onclick="window.location.href='marsala.html'" class="btn btn-primary">arte marsala</button>
-        </div>
-
-        <div class="preview">
-            <!-- Exemplo de preview de uma página externa -->
-            <iframe src="verde.html" width="600" height="400" title="Preview do Site"></iframe>
-            <button onclick="window.location.href='verde.html'" class="btn btn-primary">arte verde</button>
-        </div>
-
-        <div class="preview">
-            <!-- Exemplo de preview de uma página externa -->
-            <iframe src="verde.html" width="600" height="400" title="Preview do Site"></iframe>
-            <button onclick="window.location.href='verde.html'" class="btn btn-primary">arte verde</button>
-        </div>
-
-        <div class="preview">
-            <!-- Exemplo de preview de uma página externa -->
-            <iframe src="verde.html" width="600" height="400" title="Preview do Site"></iframe>
-            <button onclick="window.location.href='verde.html'" class="btn btn-primary">arte verde</button>
         </div>
 
     </section>
