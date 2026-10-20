@@ -33,10 +33,18 @@
                             600: '#85681A',
                             700: '#5E4910'
                         },
-                        pureWhite: '#FFFFFF',
-                        softIvory: '#FAF8F5',
-                        warmIvory: '#F4EFEA',
-                        darkIvory: '#E8E1D9'
+                        beigeTheme: {
+                            50: '#FAF7F2',
+                            100: '#F5EFE6',
+                            200: '#E8DFD1',
+                            300: '#D9CBB8',
+                            400: '#C7B59F',
+                            500: '#A8947D',
+                            600: '#8A7560',
+                            700: '#6B5846',
+                            800: '#4D3E30',
+                            900: '#33271D'
+                        }
                     },
                     fontFamily: {
                         cinzel: ['"Cinzel"', 'serif'],
@@ -49,10 +57,10 @@
     </script>
 
     <style>
-        /* Estilos Customizados & Mecanismos 3D na Cor Marfim & Dourado */
+        /* Estilos Customizados & Mecanismos 3D na Cor Bege Elegante */
         body {
-            background-color: #FAF8F5;
-            color: #2D2A26;
+            background-color: #F5EFE6;
+            color: #33271D;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
             width: 100vw;
@@ -78,7 +86,7 @@
         .gatefold-door-right {
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease 0.4s;
             transform-style: preserve-3d;
-            background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 50%, #F4EFEA 100%);
+            background: linear-gradient(135deg, #FAF7F2 0%, #F5EFE6 50%, #E8DFD1 100%);
         }
 
         .gatefold-door-left {
@@ -114,7 +122,7 @@
         }
 
         .gold-gradient-text {
-            background: linear-gradient(135deg, #AA8828 0%, #D4AF37 40%, #85681A 70%, #AA8828 100%);
+            background: linear-gradient(135deg, #8A7560 0%, #D4AF37 40%, #85681A 70%, #AA8828 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% auto;
@@ -145,7 +153,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #FAF8F5;
+            background: #F5EFE6;
         }
 
         ::-webkit-scrollbar-thumb {
@@ -180,19 +188,19 @@
 
     <!-- Botão Flutuante do Áudio -->
     <div id="audio-control"
-        class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center space-x-2 bg-white/90 backdrop-blur-md p-3 sm:p-3.5 rounded-full border border-gold-400/40 shadow-xl cursor-pointer hover:border-gold-500 transition transform hover:scale-105 active:scale-95">
+        class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center space-x-2 bg-beigeTheme-50/90 backdrop-blur-md p-3 sm:p-3.5 rounded-full border border-gold-400/40 shadow-xl cursor-pointer hover:border-gold-500 transition transform hover:scale-105 active:scale-95">
         <button id="music-btn" aria-label="Alternar Trilha Sonora"
             class="text-gold-500 focus:outline-none flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7">
             <i id="music-icon" class="fas fa-volume-mute text-base sm:text-lg"></i>
         </button>
-        <span class="text-[10px] sm:text-xs font-cinzel text-gold-600 font-semibold tracking-wider pr-2 hidden sm:inline"
+        <span class="text-[10px] sm:text-xs font-cinzel text-beigeTheme-700 font-semibold tracking-wider pr-2 hidden sm:inline"
             id="music-text">Música de Fundo</span>
     </div>
 
-    <!-- ENVELOPE / PORTAS 3D DE ABERTURA EM MARFIM -->
+    <!-- ENVELOPE / PORTAS 3D DE ABERTURA EM BEGE -->
     <div id="gatefold-container"
-        class="gatefold-wrapper fixed inset-0 z-50 flex items-center justify-center bg-stone-900/40 backdrop-blur-sm overflow-hidden">
-        <div class="gatefold-overlay absolute inset-0 bg-stone-900/30 transition-opacity duration-700">
+        class="gatefold-wrapper fixed inset-0 z-50 flex items-center justify-center bg-beigeTheme-900/40 backdrop-blur-sm overflow-hidden">
+        <div class="gatefold-overlay absolute inset-0 bg-beigeTheme-900/30 transition-opacity duration-700">
         </div>
 
         <!-- Porta Esquerda -->
@@ -211,7 +219,7 @@
                     class="font-cinzel text-gold-600 uppercase text-[8px] sm:text-xs tracking-[0.25em] block mb-1">Convite
                     de</span>
                 <h2
-                    class="name-denilson font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-stone-800 tracking-wider">
+                    class="name-denilson font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-beigeTheme-800 tracking-wider">
                     DENILSON
                 </h2>
             </div>
@@ -237,7 +245,7 @@
             <div class="text-left my-auto pl-2 sm:pl-6 md:pl-10">
                 <span class="font-cursive text-gold-500 text-lg sm:text-3xl md:text-5xl block -mb-1 italic">&</span>
                 <h2
-                    class="name-cristiane font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-stone-800 tracking-wider">
+                    class="name-cristiane font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-beigeTheme-800 tracking-wider">
                     CRISTIANE
                 </h2>
             </div>
@@ -254,7 +262,7 @@
             <button id="open-doors-btn"
                 class="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-gold-100 via-gold-400 to-gold-600 p-0.5 sm:p-1 shadow-2xl hover:scale-105 active:scale-95 transition duration-300 group focus:outline-none cursor-pointer gold-border-glow">
                 <div
-                    class="w-full h-full rounded-full bg-white flex flex-col items-center justify-center border border-gold-400/60 group-hover:bg-softIvory transition duration-300">
+                    class="w-full h-full rounded-full bg-beigeTheme-50 flex flex-col items-center justify-center border border-gold-400/60 group-hover:bg-beigeTheme-100 transition duration-300">
                     <span class="font-cinzel text-xs sm:text-xl md:text-2xl font-bold text-gold-600 tracking-tighter">D
                         & C</span>
                     <span
@@ -262,22 +270,22 @@
                 </div>
             </button>
             <p
-                class="text-[9px] sm:text-xs font-cinzel text-stone-600 font-semibold tracking-widest uppercase mt-3 animate-pulse text-center">
+                class="text-[9px] sm:text-xs font-cinzel text-beigeTheme-700 font-semibold tracking-widest uppercase mt-3 animate-pulse text-center">
                 Toque para deslacrar
             </p>
         </div>
     </div>
 
     <!-- CONTEÚDO PRINCIPAL DO CONVITE -->
-    <main id="main-content" class="relative opacity-0 transition-opacity duration-1000 bg-softIvory text-stone-800">
+    <main id="main-content" class="relative opacity-0 transition-opacity duration-1000 bg-beigeTheme-100 text-beigeTheme-800">
 
         <!-- NAVBAR -->
         <nav
-            class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gold-400/30 py-3 sm:py-4 px-4 sm:px-6 transition shadow-sm">
+            class="sticky top-0 z-30 bg-beigeTheme-50/90 backdrop-blur-md border-b border-gold-400/30 py-3 sm:py-4 px-4 sm:px-6 transition shadow-sm">
             <div class="max-w-6xl mx-auto flex justify-between items-center">
                 <a href="#hero" class="font-cinzel text-lg sm:text-xl font-bold text-gold-600 tracking-widest ">D &
                     C</a>
-                <div class="hidden md:flex space-x-8 text-xs font-cinzel font-semibold tracking-[0.2em] text-stone-600 uppercase">
+                <div class="hidden md:flex space-x-8 text-xs font-cinzel font-semibold tracking-[0.2em] text-beigeTheme-700 uppercase">
                     <a href="#hero" class="hover:text-gold-500 transition">Início</a>
                     <a href="#evento" class="hover:text-gold-500 transition">O Evento</a>
                     <a href="#presente" class="hover:text-gold-500 transition">Presente</a>
@@ -287,7 +295,7 @@
 
         <!-- SEÇÃO HERO -->
         <section id="hero"
-            class="relative min-h-[90vh] sm:min-h-[95vh] flex flex-col items-center justify-center text-center px-4 py-12 sm:py-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-softIvory to-warmIvory">
+            class="relative min-h-[90vh] sm:min-h-[95vh] flex flex-col items-center justify-center text-center px-4 py-12 sm:py-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-beigeTheme-50 via-beigeTheme-100 to-beigeTheme-200">
 
             <div class="max-w-4xl mx-auto reveal w-full">
                 <div class="flex items-center justify-center space-x-2 sm:space-x-4 mb-4 sm:mb-6">
@@ -299,7 +307,7 @@
                 </div>
 
                 <h1
-                    class="font-cinzel text-3xl sm:text-6xl md:text-7xl font-bold text-stone-800 tracking-wide gold-gradient-text my-2 sm:my-4 leading-tight">
+                    class="font-cinzel text-3xl sm:text-6xl md:text-7xl font-bold text-beigeTheme-800 tracking-wide gold-gradient-text my-2 sm:my-4 leading-tight">
                     Denilson & Cristiane
                 </h1>
 
@@ -308,35 +316,35 @@
                 </p>
 
                 <p
-                    class="font-cinzel text-xs sm:text-base text-stone-600 tracking-[0.15em] sm:tracking-[0.25em] font-semibold uppercase mb-8 sm:mb-12">
+                    class="font-cinzel text-xs sm:text-base text-beigeTheme-700 tracking-[0.15em] sm:tracking-[0.25em] font-semibold uppercase mb-8 sm:mb-12">
                     • 19 DE DEZEMBRO DE 2026 •
                 </p>
 
                 <!-- CONTAGEM REGRESSIVA -->
                 <div class="grid grid-cols-4 gap-2 sm:gap-6 max-w-xs sm:max-w-md mx-auto mb-10 sm:mb-14">
                     <div
-                        class="bg-white/80 backdrop-blur border border-gold-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
+                        class="bg-beigeTheme-50/80 backdrop-blur border border-gold-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
                         <span id="cd-days" class="font-cinzel text-xl sm:text-4xl text-gold-600 font-bold">00</span>
                         <span
-                            class="text-[8px] sm:text-[10px] font-cinzel text-stone-500 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Dias</span>
+                            class="text-[8px] sm:text-[10px] font-cinzel text-beigeTheme-600 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Dias</span>
                     </div>
                     <div
-                        class="bg-white/80 backdrop-blur border border-gold-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
+                        class="bg-beigeTheme-50/80 backdrop-blur border border-gold-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
                         <span id="cd-hours" class="font-cinzel text-xl sm:text-4xl text-gold-600 font-bold">00</span>
                         <span
-                            class="text-[8px] sm:text-[10px] font-cinzel text-stone-500 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Horas</span>
+                            class="text-[8px] sm:text-[10px] font-cinzel text-beigeTheme-600 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Horas</span>
                     </div>
                     <div
-                        class="bg-white/80 backdrop-blur border border-gold-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
+                        class="bg-beigeTheme-50/80 backdrop-blur border border-gold-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
                         <span id="cd-minutes" class="font-cinzel text-xl sm:text-4xl text-gold-600 font-bold">00</span>
                         <span
-                            class="text-[8px] sm:text-[10px] font-cinzel text-stone-500 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Min</span>
+                            class="text-[8px] sm:text-[10px] font-cinzel text-beigeTheme-600 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Min</span>
                     </div>
                     <div
-                        class="bg-white/80 backdrop-blur border border-gold-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
+                        class="bg-beigeTheme-50/80 backdrop-blur border border-gold-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
                         <span id="cd-seconds" class="font-cinzel text-xl sm:text-4xl text-gold-600 font-bold">00</span>
                         <span
-                            class="text-[8px] sm:text-[10px] font-cinzel text-stone-500 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Seg</span>
+                            class="text-[8px] sm:text-[10px] font-cinzel text-beigeTheme-600 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Seg</span>
                     </div>
                 </div>
 
@@ -349,13 +357,13 @@
         </section>
 
         <!-- CARD UNIFICADO DO EVENTO -->
-        <section id="evento" class="py-16 sm:py-24 bg-white/60 px-4 border-y border-gold-400/20">
+        <section id="evento" class="py-16 sm:py-24 bg-beigeTheme-50/60 px-4 border-y border-gold-400/20">
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-10 sm:mb-16 reveal">
                     <span
                         class="font-cinzel text-gold-600 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] font-semibold uppercase block mb-1 sm:mb-2">Programação
                         Completa</span>
-                    <h2 class="font-cinzel text-3xl sm:text-5xl text-stone-800 font-semibold">O Grande Dia</h2>
+                    <h2 class="font-cinzel text-3xl sm:text-5xl text-beigeTheme-800 font-semibold">O Grande Dia</h2>
                     <div
                         class="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mt-3 sm:mt-4">
                     </div>
@@ -363,13 +371,13 @@
 
                 <!-- Card Unificado de Cerimônia & Festa -->
                 <div
-                    class="bg-white/90 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-gold-400/30 shadow-xl hover:border-gold-400 transition duration-500 reveal">
+                    class="bg-beigeTheme-50/90 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-gold-400/30 shadow-xl hover:border-gold-400 transition duration-500 reveal">
                     <div class="text-center mb-8 sm:mb-10">
                         <div
                             class="w-14 h-14 sm:w-18 sm:h-18 bg-gold-400/10 text-gold-500 border border-gold-400/40 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-xl sm:text-2xl">
                             <i class="fas fa-glass-cheers"></i>
                         </div>
-                        <h3 class="font-cinzel text-2xl sm:text-4xl text-stone-800 font-semibold mb-2">Cerimônia &
+                        <h3 class="font-cinzel text-2xl sm:text-4xl text-beigeTheme-800 font-semibold mb-2">Cerimônia &
                             Recepção</h3>
                         <p
                             class="font-cinzel text-gold-600 font-semibold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] uppercase">
@@ -380,15 +388,15 @@
 
                         <!-- Cerimônia -->
                         <div
-                            class="bg-softIvory p-5 sm:p-6 rounded-xl border border-gold-400/20 flex flex-col justify-between">
+                            class="bg-beigeTheme-100 p-5 sm:p-6 rounded-xl border border-gold-400/20 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-center gap-2 mb-3 text-gold-600">
                                     <i class="fas fa-church text-lg"></i>
-                                    <h4 class="font-cinzel text-lg font-semibold text-stone-800">Cerimônia Religiosa</h4>
+                                    <h4 class="font-cinzel text-lg font-semibold text-beigeTheme-800">Cerimônia Religiosa</h4>
                                 </div>
                                 <p class="text-xs font-cinzel text-gold-600 uppercase font-semibold tracking-widest mb-2"><i
                                         class="far fa-clock mr-1"></i> Às 19:00 Horas</p>
-                                <p class="text-stone-600 text-xs sm:text-sm mb-1"><strong>Local:</strong> Igreja Santa
+                                <p class="text-beigeTheme-700 text-xs sm:text-sm mb-1"><strong>Local:</strong> Igreja Santa
                                     Terezinha do Menino Jesus</p>
                             </div>
                             <div class="mt-4 pt-3 border-t border-gold-400/20">
@@ -401,17 +409,17 @@
 
                         <!-- Festa -->
                         <div
-                            class="bg-softIvory p-5 sm:p-6 rounded-xl border border-gold-400/20 flex flex-col justify-between">
+                            class="bg-beigeTheme-100 p-5 sm:p-6 rounded-xl border border-gold-400/20 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-center gap-2 mb-3 text-gold-600">
                                     <i class="fas fa-glass-cheers text-lg"></i>
-                                    <h4 class="font-cinzel text-lg font-semibold text-stone-800">Recepção & Festa</h4>
+                                    <h4 class="font-cinzel text-lg font-semibold text-beigeTheme-800">Recepção & Festa</h4>
                                 </div>
                                 <p class="text-xs font-cinzel text-gold-600 uppercase font-semibold tracking-widest mb-2"><i
                                         class="far fa-clock mr-1"></i> Logo após a cerimônia</p>
-                                <p class="text-stone-600 text-xs sm:text-sm mb-1"><strong>Local:</strong> Flapinheiro
+                                <p class="text-beigeTheme-700 text-xs sm:text-sm mb-1"><strong>Local:</strong> Flapinheiro
                                 </p>
-                                <p class="text-stone-500 text-xs"><i class="fas fa-location-dot mr-1"></i> Rua: Luís
+                                <p class="text-beigeTheme-600 text-xs"><i class="fas fa-location-dot mr-1"></i> Rua: Luís
                                     Domingues</p>
                             </div>
                             <div class="mt-4 pt-3 border-t border-gold-400/20">
@@ -436,11 +444,11 @@
 
                 <!-- Traje -->
                 <div
-                    class="mt-8 sm:mt-12 bg-white/80 rounded-2xl p-6 sm:p-8 border border-gold-400/30 text-center reveal shadow-sm">
+                    class="mt-8 sm:mt-12 bg-beigeTheme-50/80 rounded-2xl p-6 sm:p-8 border border-gold-400/30 text-center reveal shadow-sm">
                     <i class="fas fa-user-tie text-gold-500 text-xl sm:text-2xl mb-2 sm:mb-3"></i>
-                    <h4 class="font-cinzel text-xl sm:text-2xl font-semibold text-stone-800 mb-2">Traje: Passeio Completo
+                    <h4 class="font-cinzel text-xl sm:text-2xl font-semibold text-beigeTheme-800 mb-2">Traje: Passeio Completo
                         / Social</h4>
-                    <p class="text-stone-600 text-xs font-normal leading-relaxed max-w-lg mx-auto">
+                    <p class="text-beigeTheme-700 text-xs font-normal leading-relaxed max-w-lg mx-auto">
                         Sugerimos trajes sociais elegantes para os nossos convidados. Pedimos carinhosamente a gentileza
                         de evitar tons brancos ou pérola.
                     </p>
@@ -454,8 +462,8 @@
                 <span
                     class="font-cinzel text-gold-600 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] font-semibold uppercase block mb-1 sm:mb-2">Mimo
                     aos Noivos</span>
-                <h2 class="font-cinzel text-3xl sm:text-5xl text-stone-800 font-semibold">Presente</h2>
-                <p class="text-stone-600 text-xs sm:text-sm font-normal max-w-lg mx-auto mt-2 sm:mt-3">
+                <h2 class="font-cinzel text-3xl sm:text-5xl text-beigeTheme-800 font-semibold">Presente</h2>
+                <p class="text-beigeTheme-700 text-xs sm:text-sm font-normal max-w-lg mx-auto mt-2 sm:mt-3">
                     Sua presença é o nosso maior presente! Se desejar nos abençoar com uma contribuição para a nossa
                     nova fase, disponibilizamos nossa chave PIX abaixo:
                 </p>
@@ -466,35 +474,35 @@
 
             <!-- Card PIX Direto -->
             <div
-                class="bg-white/90 backdrop-blur-xl border border-gold-400/40 rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center max-w-xl mx-auto shadow-xl relative reveal">
+                class="bg-beigeTheme-50/90 backdrop-blur-xl border border-gold-400/40 rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center max-w-xl mx-auto shadow-xl relative reveal">
                 <div
                     class="w-14 h-14 sm:w-16 sm:h-16 bg-gold-400/10 text-gold-500 border border-gold-400/30 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-xl sm:text-2xl">
                     <i class="fas fa-qrcode"></i>
                 </div>
 
-                <h3 class="font-cinzel text-xl sm:text-2xl text-stone-800 font-bold mb-2">Chave PIX dos Noivos</h3>
-                <p class="text-xs text-stone-600 font-normal mb-6">Escaneie o QR Code abaixo ou copie a chave PIX para
+                <h3 class="font-cinzel text-xl sm:text-2xl text-beigeTheme-800 font-bold mb-2">Chave PIX dos Noivos</h3>
+                <p class="text-xs text-beigeTheme-700 font-normal mb-6">Escaneie o QR Code abaixo ou copie a chave PIX para
                     realizar sua contribuição.</p>
 
                 <div
-                    class="bg-softIvory p-4 sm:p-6 rounded-2xl border border-gold-400/30 mb-6 flex flex-col items-center">
+                    class="bg-beigeTheme-100 p-4 sm:p-6 rounded-2xl border border-gold-400/30 mb-6 flex flex-col items-center">
                     <!-- SVG do QR Code -->
                     <svg class="w-36 h-36 sm:w-44 sm:h-44 mb-4" viewBox="0 0 100 100" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect width="100" height="100" fill="white" />
-                        <path d="M10 10H40V40H10V10ZM15 15V35H35V15H15Z" fill="#2D2A26" />
-                        <path d="M20 20H30V30H20V20Z" fill="#2D2A26" />
-                        <path d="M60 10H90V40H60V10ZM65 15V35H85V15H65Z" fill="#2D2A26" />
-                        <path d="M70 20H80V30H70V20Z" fill="#2D2A26" />
-                        <path d="M10 60H40V90H10V60ZM15 65V85H35V65H15Z" fill="#2D2A26" />
-                        <path d="M20 70H30V80H20V70Z" fill="#2D2A26" />
+                        <path d="M10 10H40V40H10V10ZM15 15V35H35V15H15Z" fill="#33271D" />
+                        <path d="M20 20H30V30H20V20Z" fill="#33271D" />
+                        <path d="M60 10H90V40H60V10ZM65 15V35H85V15H65Z" fill="#33271D" />
+                        <path d="M70 20H80V30H70V20Z" fill="#33271D" />
+                        <path d="M10 60H40V90H10V60ZM15 65V85H35V65H15Z" fill="#33271D" />
+                        <path d="M20 70H30V80H20V70Z" fill="#33271D" />
                         <path
                             d="M50 10H55V25H50V10ZM55 30H60V40H55V30ZM70 50H90V55H70V50ZM50 60H65V75H50V60ZM75 75H90V90H75V75Z"
-                            fill="#2D2A26" />
+                            fill="#33271D" />
                     </svg>
 
                     <span class="text-xs font-cinzel text-gold-600 font-bold mb-1">Chave PIX:</span>
-                    <span class="text-[11px] sm:text-xs text-stone-700 font-mono break-all select-all px-2"
+                    <span class="text-[11px] sm:text-xs text-beigeTheme-800 font-mono break-all select-all px-2"
                         id="pix-key-text">00020126360014BR.GOV.BCB.PIX0114+5511999999999</span>
                 </div>
 
@@ -508,12 +516,12 @@
         </section>
 
         <!-- RODAPÉ -->
-        <footer class="bg-white py-10 sm:py-12 text-center text-xs font-cinzel border-t border-gold-400/20">
+        <footer class="bg-beigeTheme-50 py-10 sm:py-12 text-center text-xs font-cinzel border-t border-gold-400/20">
             <div class="max-w-4xl mx-auto px-4 space-y-3">
                 <h3 class="font-cursive text-3xl sm:text-4xl text-gold-500">Denilson & Cristiane</h3>
-                <p class="tracking-[0.2em] sm:tracking-[0.25em] text-stone-500 font-semibold uppercase text-[10px] sm:text-xs">
+                <p class="tracking-[0.2em] sm:tracking-[0.25em] text-beigeTheme-600 font-semibold uppercase text-[10px] sm:text-xs">
                     • 19.12.2026 •</p>
-                <p class="text-stone-400 font-sans text-[10px] pt-2 sm:pt-4">Desenvolvido com carinho para o nosso
+                <p class="text-beigeTheme-500 font-sans text-[10px] pt-2 sm:pt-4">Desenvolvido com carinho para o nosso
                     casamento</p>
             </div>
         </footer>
