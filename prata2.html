@@ -25,16 +25,28 @@
             theme: {
                 extend: {
                     colors: {
-                        silver: {
-                            100: '#F8FAFC',
-                            200: '#E2E8F0',
-                            300: '#CBD5E1',
-                            400: '#94A3B8',
-                            500: '#64748B',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1E293B',
-                            900: '#0F172A'
+                        terracotta: {
+                            50: '#FDF8F5',
+                            100: '#FBF0E9',
+                            200: '#F4DCD0',
+                            300: '#E7BCAF',
+                            400: '#D59281',
+                            500: '#C26D57',
+                            600: '#A6513C',
+                            700: '#8A3E2C',
+                            800: '#6E3123',
+                            900: '#4A1F15',
+                            950: '#2C100A'
+                        },
+                        sand: {
+                            100: '#FAF6F0',
+                            200: '#F3ECE1',
+                            300: '#E5D8C5'
+                        },
+                        goldAccent: {
+                            300: '#E6C687',
+                            400: '#D4AF37',
+                            500: '#AA8828'
                         }
                     },
                     fontFamily: {
@@ -48,10 +60,10 @@
     </script>
 
     <style>
-        /* Estilos Customizados & Mecanismos 3D na Cor Prata Elegante */
+        /* Estilos Customizados & Mecanismos 3D na Cor Terracota */
         body {
-            background-color: #0F172A;
-            color: #F8FAFC;
+            background-color: #FAF6F0;
+            color: #4A1F15;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
             width: 100vw;
@@ -77,7 +89,7 @@
         .gatefold-door-right {
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease 0.4s;
             transform-style: preserve-3d;
-            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            background: linear-gradient(135deg, #A6513C 0%, #8A3E2C 50%, #4A1F15 100%);
         }
 
         .gatefold-door-left {
@@ -107,13 +119,13 @@
             transition: opacity 0.8s ease 0.6s;
         }
 
-        /* Brilho Prateado */
-        .silver-border-glow {
-            box-shadow: 0 0 25px rgba(226, 232, 240, 0.25), inset 0 0 15px rgba(226, 232, 240, 0.2);
+        /* Brilho Terracota / Dourado */
+        .terracotta-border-glow {
+            box-shadow: 0 10px 30px rgba(194, 109, 87, 0.35), inset 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
-        .silver-gradient-text {
-            background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 25%, #CBD5E1 50%, #94A3B8 75%, #F8FAFC 100%);
+        .terracotta-gradient-text {
+            background: linear-gradient(135deg, #A6513C 0%, #C26D57 35%, #D4AF37 70%, #8A3E2C 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% auto;
@@ -144,11 +156,11 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #0F172A;
+            background: #FAF6F0;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #64748B;
+            background: #C26D57;
             border-radius: 4px;
         }
 
@@ -172,51 +184,51 @@
     </style>
 </head>
 
-<body class="relative selection:bg-silver-400 selection:text-silver-900 overflow-x-hidden">
+<body class="relative selection:bg-terracotta-500 selection:text-white overflow-x-hidden">
 
-    <!-- Canvas para Partículas de Brilho Prateado -->
+    <!-- Canvas para Partículas de Brilho -->
     <canvas id="sparkle-canvas"></canvas>
 
     <!-- Botão Flutuante do Áudio -->
     <div id="audio-control"
-        class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center space-x-2 bg-silver-900/90 backdrop-blur-md p-3 sm:p-3.5 rounded-full border border-silver-400/40 shadow-2xl cursor-pointer hover:border-silver-300 transition transform hover:scale-105 active:scale-95">
+        class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center space-x-2 bg-white/90 backdrop-blur-md p-3 sm:p-3.5 rounded-full border border-terracotta-300 shadow-xl cursor-pointer hover:border-terracotta-500 transition transform hover:scale-105 active:scale-95">
         <button id="music-btn" aria-label="Alternar Trilha Sonora"
-            class="text-silver-300 focus:outline-none flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7">
+            class="text-terracotta-600 focus:outline-none flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7">
             <i id="music-icon" class="fas fa-volume-mute text-base sm:text-lg"></i>
         </button>
-        <span class="text-[10px] sm:text-xs font-cinzel text-silver-200 font-medium tracking-wider pr-2 hidden sm:inline"
+        <span class="text-[10px] sm:text-xs font-cinzel text-terracotta-800 font-semibold tracking-wider pr-2 hidden sm:inline"
             id="music-text">Música de Fundo</span>
     </div>
 
-    <!-- ENVELOPE / PORTAS 3D DE ABERTURA EM PRATA -->
+    <!-- ENVELOPE / PORTAS 3D DE ABERTURA EM TERRACOTA -->
     <div id="gatefold-container"
-        class="gatefold-wrapper fixed inset-0 z-50 flex items-center justify-center bg-black/95 overflow-hidden">
-        <div class="gatefold-overlay absolute inset-0 bg-silver-900/70 backdrop-blur-sm transition-opacity duration-700">
+        class="gatefold-wrapper fixed inset-0 z-50 flex items-center justify-center bg-terracotta-950/60 backdrop-blur-sm overflow-hidden">
+        <div class="gatefold-overlay absolute inset-0 bg-terracotta-950/40 transition-opacity duration-700">
         </div>
 
         <!-- Porta Esquerda -->
         <div
-            class="gatefold-door-left absolute top-0 left-0 w-1/2 h-full border-r border-silver-400/30 flex flex-col justify-between p-4 sm:p-8 md:p-12 z-20">
-            <div class="opacity-40 w-10 sm:w-20 md:w-28">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#CBD5E1" stroke-width="1.2" class="w-full h-auto">
+            class="gatefold-door-left absolute top-0 left-0 w-1/2 h-full border-r border-terracotta-300/40 flex flex-col justify-between p-4 sm:p-8 md:p-12 z-20 shadow-2xl">
+            <div class="opacity-60 w-10 sm:w-20 md:w-28">
+                <svg viewBox="0 0 100 100" fill="none" stroke="#F4DCD0" stroke-width="1.2" class="w-full h-auto">
                     <path d="M10,90 Q30,40 90,10 M20,70 Q40,50 60,40 M30,80 Q50,70 70,60" />
-                    <circle cx="90" cy="10" r="3" fill="#CBD5E1" />
+                    <circle cx="90" cy="10" r="3" fill="#F4DCD0" />
                 </svg>
             </div>
 
             <!-- Nome Denilson alinhado na porta esquerda -->
             <div class="text-right my-auto pr-2 sm:pr-6 md:pr-10">
                 <span
-                    class="font-cinzel text-silver-400 uppercase text-[8px] sm:text-xs tracking-[0.25em] block mb-1">Convite
+                    class="font-cinzel text-terracotta-200 uppercase text-[8px] sm:text-xs tracking-[0.25em] block mb-1">Convite
                     de</span>
                 <h2
-                    class="name-denilson font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-silver-100 tracking-wider">
+                    class="name-denilson font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-white tracking-wider">
                     DENILSON
                 </h2>
             </div>
 
-            <div class="opacity-30 transform rotate-180 w-8 sm:w-16 md:w-24">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#CBD5E1" stroke-width="1.2" class="w-full h-auto">
+            <div class="opacity-50 transform rotate-180 w-8 sm:w-16 md:w-24">
+                <svg viewBox="0 0 100 100" fill="none" stroke="#F4DCD0" stroke-width="1.2" class="w-full h-auto">
                     <path d="M10,90 Q30,40 90,10 M20,70 Q40,50 60,40" />
                 </svg>
             </div>
@@ -224,175 +236,175 @@
 
         <!-- Porta Direita -->
         <div
-            class="gatefold-door-right absolute top-0 right-0 w-1/2 h-full border-l border-silver-400/30 flex flex-col justify-between p-4 sm:p-8 md:p-12 z-20">
-            <div class="self-end opacity-40 transform rotate-90 w-10 sm:w-20 md:w-28">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#CBD5E1" stroke-width="1.2" class="w-full h-auto">
+            class="gatefold-door-right absolute top-0 right-0 w-1/2 h-full border-l border-terracotta-300/40 flex flex-col justify-between p-4 sm:p-8 md:p-12 z-20 shadow-2xl">
+            <div class="self-end opacity-60 transform rotate-90 w-10 sm:w-20 md:w-28">
+                <svg viewBox="0 0 100 100" fill="none" stroke="#F4DCD0" stroke-width="1.2" class="w-full h-auto">
                     <path d="M10,90 Q30,40 90,10 M20,70 Q40,50 60,40 M30,80 Q50,70 70,60" />
-                    <circle cx="90" cy="10" r="3" fill="#CBD5E1" />
+                    <circle cx="90" cy="10" r="3" fill="#F4DCD0" />
                 </svg>
             </div>
 
             <!-- Nome Cristiane alinhado na porta direita -->
             <div class="text-left my-auto pl-2 sm:pl-6 md:pl-10">
-                <span class="font-cursive text-silver-300 text-lg sm:text-3xl md:text-5xl block -mb-1 italic">&</span>
+                <span class="font-cursive text-goldAccent-300 text-lg sm:text-3xl md:text-5xl block -mb-1 italic">&</span>
                 <h2
-                    class="name-cristiane font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-silver-100 tracking-wider">
+                    class="name-cristiane font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-white tracking-wider">
                     CRISTIANE
                 </h2>
             </div>
 
-            <div class="self-end opacity-30 transform -rotate-90 w-8 sm:w-16 md:w-24">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#CBD5E1" stroke-width="1.2" class="w-full h-auto">
+            <div class="self-end opacity-50 transform -rotate-90 w-8 sm:w-16 md:w-24">
+                <svg viewBox="0 0 100 100" fill="none" stroke="#F4DCD0" stroke-width="1.2" class="w-full h-auto">
                     <path d="M10,90 Q30,40 90,10" />
                 </svg>
             </div>
         </div>
 
-        <!-- Selo Prateado Central / Botão de Abertura -->
+        <!-- Selo de Cera Central / Botão de Abertura -->
         <div class="absolute z-30 flex flex-col items-center justify-center pointer-events-auto">
             <button id="open-doors-btn"
-                class="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-white via-silver-300 to-silver-600 p-0.5 sm:p-1 shadow-2xl hover:scale-105 active:scale-95 transition duration-300 group focus:outline-none cursor-pointer silver-border-glow">
+                class="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-terracotta-200 via-terracotta-500 to-terracotta-800 p-0.5 sm:p-1 shadow-2xl hover:scale-105 active:scale-95 transition duration-300 group focus:outline-none cursor-pointer terracotta-border-glow">
                 <div
-                    class="w-full h-full rounded-full bg-silver-900 flex flex-col items-center justify-center border border-silver-400/50 group-hover:bg-silver-800 transition duration-300">
-                    <span class="font-cinzel text-xs sm:text-xl md:text-2xl font-bold text-silver-100 tracking-tighter">D
+                    class="w-full h-full rounded-full bg-sand-100 flex flex-col items-center justify-center border border-terracotta-400/60 group-hover:bg-terracotta-50 transition duration-300">
+                    <span class="font-cinzel text-xs sm:text-xl md:text-2xl font-bold text-terracotta-700 tracking-tighter">D
                         & C</span>
                     <span
-                        class="text-[7px] sm:text-[9px] font-cinzel tracking-[0.2em] sm:tracking-[0.25em] text-silver-300 uppercase mt-0.5">ABRIR</span>
+                        class="text-[7px] sm:text-[9px] font-cinzel tracking-[0.2em] sm:tracking-[0.25em] text-terracotta-600 uppercase mt-0.5">ABRIR</span>
                 </div>
             </button>
             <p
-                class="text-[9px] sm:text-xs font-cinzel text-silver-300 tracking-widest uppercase mt-3 animate-pulse text-center">
+                class="text-[9px] sm:text-xs font-cinzel text-sand-100 font-semibold tracking-widest uppercase mt-3 animate-pulse text-center">
                 Toque para deslacrar
             </p>
         </div>
     </div>
 
     <!-- CONTEÚDO PRINCIPAL DO CONVITE -->
-    <main id="main-content" class="relative opacity-0 transition-opacity duration-1000 bg-silver-900 text-silver-100">
+    <main id="main-content" class="relative opacity-0 transition-opacity duration-1000 bg-sand-100 text-terracotta-900">
 
         <!-- NAVBAR -->
         <nav
-            class="sticky top-0 z-30 bg-silver-900/90 backdrop-blur-md border-b border-silver-400/20 py-3 sm:py-4 px-4 sm:px-6 transition">
+            class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-terracotta-200 py-3 sm:py-4 px-4 sm:px-6 transition shadow-sm">
             <div class="max-w-6xl mx-auto flex justify-between items-center">
-                <a href="#hero" class="font-cinzel text-lg sm:text-xl font-bold text-silver-200 tracking-widest ">D &
+                <a href="#hero" class="font-cinzel text-lg sm:text-xl font-bold text-terracotta-700 tracking-widest ">D &
                     C</a>
-                <div class="hidden md:flex space-x-8 text-xs font-cinzel tracking-[0.2em] text-silver-300 uppercase">
-                    <a href="#hero" class="hover:text-white transition">Início</a>
-                    <a href="#evento" class="hover:text-white transition">O Evento</a>
-                    <a href="#presente" class="hover:text-white transition">Presente</a>
+                <div class="hidden md:flex space-x-8 text-xs font-cinzel font-semibold tracking-[0.2em] text-terracotta-800 uppercase">
+                    <a href="#hero" class="hover:text-terracotta-600 transition">Início</a>
+                    <a href="#evento" class="hover:text-terracotta-600 transition">O Evento</a>
+                    <a href="#presente" class="hover:text-terracotta-600 transition">Presente</a>
                 </div>
             </div>
         </nav>
 
         <!-- SEÇÃO HERO -->
         <section id="hero"
-            class="relative min-h-[90vh] sm:min-h-[95vh] flex flex-col items-center justify-center text-center px-4 py-12 sm:py-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-silver-800 via-silver-900 to-black">
+            class="relative min-h-[90vh] sm:min-h-[95vh] flex flex-col items-center justify-center text-center px-4 py-12 sm:py-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-sand-100 to-sand-200">
 
             <div class="max-w-4xl mx-auto reveal w-full">
                 <div class="flex items-center justify-center space-x-2 sm:space-x-4 mb-4 sm:mb-6">
-                    <div class="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-transparent to-silver-400"></div>
+                    <div class="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-transparent to-terracotta-500"></div>
                     <span
-                        class="font-cinzel text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] text-silver-300">Junte-se
+                        class="font-cinzel text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] text-terracotta-600 font-medium">Junte-se
                         a nós para celebrar</span>
-                    <div class="h-[1px] w-8 sm:w-12 bg-gradient-to-l from-transparent to-silver-400"></div>
+                    <div class="h-[1px] w-8 sm:w-12 bg-gradient-to-l from-transparent to-terracotta-500"></div>
                 </div>
 
                 <h1
-                    class="font-cinzel text-3xl sm:text-6xl md:text-7xl font-bold text-white tracking-wide silver-gradient-text my-2 sm:my-4 leading-tight">
+                    class="font-cinzel text-3xl sm:text-6xl md:text-7xl font-bold text-terracotta-900 tracking-wide terracotta-gradient-text my-2 sm:my-4 leading-tight">
                     Denilson & Cristiane
                 </h1>
 
-                <p class="font-cursive text-2xl sm:text-4xl text-silver-300 my-4 sm:my-6 px-2">
+                <p class="font-cursive text-2xl sm:text-4xl text-terracotta-600 my-4 sm:my-6 px-2">
                     "O amor tudo sofre, tudo crê, tudo espera, tudo suporta."
                 </p>
 
                 <p
-                    class="font-cinzel text-xs sm:text-base text-silver-200 tracking-[0.15em] sm:tracking-[0.25em] uppercase mb-8 sm:mb-12">
+                    class="font-cinzel text-xs sm:text-base text-terracotta-800 tracking-[0.15em] sm:tracking-[0.25em] font-semibold uppercase mb-8 sm:mb-12">
                     • 19 DE DEZEMBRO DE 2026 •
                 </p>
 
                 <!-- CONTAGEM REGRESSIVA -->
                 <div class="grid grid-cols-4 gap-2 sm:gap-6 max-w-xs sm:max-w-md mx-auto mb-10 sm:mb-14">
                     <div
-                        class="bg-silver-800/60 backdrop-blur border border-silver-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex flex-col items-center">
-                        <span id="cd-days" class="font-cinzel text-xl sm:text-4xl text-white font-bold">00</span>
+                        class="bg-white/90 backdrop-blur border border-terracotta-200 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
+                        <span id="cd-days" class="font-cinzel text-xl sm:text-4xl text-terracotta-700 font-bold">00</span>
                         <span
-                            class="text-[8px] sm:text-[10px] font-cinzel text-silver-400 uppercase tracking-widest mt-0.5 sm:mt-1">Dias</span>
+                            class="text-[8px] sm:text-[10px] font-cinzel text-terracotta-600 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Dias</span>
                     </div>
                     <div
-                        class="bg-silver-800/60 backdrop-blur border border-silver-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex flex-col items-center">
-                        <span id="cd-hours" class="font-cinzel text-xl sm:text-4xl text-white font-bold">00</span>
+                        class="bg-white/90 backdrop-blur border border-terracotta-200 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
+                        <span id="cd-hours" class="font-cinzel text-xl sm:text-4xl text-terracotta-700 font-bold">00</span>
                         <span
-                            class="text-[8px] sm:text-[10px] font-cinzel text-silver-400 uppercase tracking-widest mt-0.5 sm:mt-1">Horas</span>
+                            class="text-[8px] sm:text-[10px] font-cinzel text-terracotta-600 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Horas</span>
                     </div>
                     <div
-                        class="bg-silver-800/60 backdrop-blur border border-silver-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex flex-col items-center">
-                        <span id="cd-minutes" class="font-cinzel text-xl sm:text-4xl text-white font-bold">00</span>
+                        class="bg-white/90 backdrop-blur border border-terracotta-200 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
+                        <span id="cd-minutes" class="font-cinzel text-xl sm:text-4xl text-terracotta-700 font-bold">00</span>
                         <span
-                            class="text-[8px] sm:text-[10px] font-cinzel text-silver-400 uppercase tracking-widest mt-0.5 sm:mt-1">Min</span>
+                            class="text-[8px] sm:text-[10px] font-cinzel text-terracotta-600 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Min</span>
                     </div>
                     <div
-                        class="bg-silver-800/60 backdrop-blur border border-silver-400/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex flex-col items-center">
-                        <span id="cd-seconds" class="font-cinzel text-xl sm:text-4xl text-white font-bold">00</span>
+                        class="bg-white/90 backdrop-blur border border-terracotta-200 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg flex flex-col items-center">
+                        <span id="cd-seconds" class="font-cinzel text-xl sm:text-4xl text-terracotta-700 font-bold">00</span>
                         <span
-                            class="text-[8px] sm:text-[10px] font-cinzel text-silver-400 uppercase tracking-widest mt-0.5 sm:mt-1">Seg</span>
+                            class="text-[8px] sm:text-[10px] font-cinzel text-terracotta-600 uppercase font-semibold tracking-widest mt-0.5 sm:mt-1">Seg</span>
                     </div>
                 </div>
 
                 <!-- BOTAO RSVP WHATSAPP -->
                 <button onclick="confirmViaWhatsApp()"
-                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-silver-700 via-silver-600 to-silver-700 text-white font-cinzel font-bold text-[10px] sm:text-xs uppercase px-6 sm:px-10 py-3.5 sm:py-4 rounded-full shadow-2xl hover:brightness-125 active:scale-95 transition transform tracking-[0.15em] sm:tracking-[0.2em] border border-silver-400/40">
-                    <i class="fab fa-whatsapp text-base sm:text-lg text-silver-300"></i> CONFIRMAR PRESENÇA VIA WHATSAPP
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-terracotta-600 via-terracotta-500 to-terracotta-700 text-white font-cinzel font-bold text-[10px] sm:text-xs uppercase px-6 sm:px-10 py-3.5 sm:py-4 rounded-full shadow-xl hover:brightness-105 active:scale-95 transition transform tracking-[0.15em] sm:tracking-[0.2em] border border-terracotta-400">
+                    <i class="fab fa-whatsapp text-base sm:text-lg text-white"></i> CONFIRMAR PRESENÇA VIA WHATSAPP
                 </button>
             </div>
         </section>
 
         <!-- CARD UNIFICADO DO EVENTO -->
-        <section id="evento" class="py-16 sm:py-24 bg-silver-900/40 px-4 border-y border-silver-400/20">
+        <section id="evento" class="py-16 sm:py-24 bg-white/60 px-4 border-y border-terracotta-200">
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-10 sm:mb-16 reveal">
                     <span
-                        class="font-cinzel text-silver-300 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] uppercase block mb-1 sm:mb-2">Programação
+                        class="font-cinzel text-terracotta-600 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] font-semibold uppercase block mb-1 sm:mb-2">Programação
                         Completa</span>
-                    <h2 class="font-cinzel text-3xl sm:text-5xl text-white font-semibold">O Grande Dia</h2>
+                    <h2 class="font-cinzel text-3xl sm:text-5xl text-terracotta-900 font-semibold">O Grande Dia</h2>
                     <div
-                        class="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto mt-3 sm:mt-4">
+                        class="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-transparent via-terracotta-500 to-transparent mx-auto mt-3 sm:mt-4">
                     </div>
                 </div>
 
                 <!-- Card Unificado de Cerimônia & Festa -->
                 <div
-                    class="bg-silver-800/40 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-silver-400/30 shadow-2xl hover:border-silver-300 transition duration-500 reveal">
+                    class="bg-white/90 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-terracotta-200 shadow-xl hover:border-terracotta-400 transition duration-500 reveal">
                     <div class="text-center mb-8 sm:mb-10">
                         <div
-                            class="w-14 h-14 sm:w-18 sm:h-18 bg-silver-400/10 text-silver-300 border border-silver-400/40 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-xl sm:text-2xl">
+                            class="w-14 h-14 sm:w-18 sm:h-18 bg-terracotta-100 text-terracotta-600 border border-terracotta-300 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-xl sm:text-2xl">
                             <i class="fas fa-glass-cheers"></i>
                         </div>
-                        <h3 class="font-cinzel text-2xl sm:text-4xl text-white font-semibold mb-2">Cerimônia &
+                        <h3 class="font-cinzel text-2xl sm:text-4xl text-terracotta-900 font-semibold mb-2">Cerimônia &
                             Recepção</h3>
                         <p
-                            class="font-cinzel text-silver-300 font-medium text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] uppercase">
+                            class="font-cinzel text-terracotta-600 font-semibold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] uppercase">
                             19 DE DEZEMBRO DE 2026</p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-6 border-t border-silver-400/20">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-6 border-t border-terracotta-200">
 
                         <!-- Cerimônia -->
                         <div
-                            class="bg-silver-900/60 p-5 sm:p-6 rounded-xl border border-silver-400/20 flex flex-col justify-between">
+                            class="bg-terracotta-50/60 p-5 sm:p-6 rounded-xl border border-terracotta-200 flex flex-col justify-between">
                             <div>
-                                <div class="flex items-center gap-2 mb-3 text-silver-300">
+                                <div class="flex items-center gap-2 mb-3 text-terracotta-700">
                                     <i class="fas fa-church text-lg"></i>
-                                    <h4 class="font-cinzel text-lg font-semibold text-white">Cerimônia Religiosa</h4>
+                                    <h4 class="font-cinzel text-lg font-semibold text-terracotta-900">Cerimônia Religiosa</h4>
                                 </div>
-                                <p class="text-xs font-cinzel text-silver-300 uppercase tracking-widest mb-2"><i
+                                <p class="text-xs font-cinzel text-terracotta-600 uppercase font-semibold tracking-widest mb-2"><i
                                         class="far fa-clock mr-1"></i> Às 19:00 Horas</p>
-                                <p class="text-silver-200 text-xs sm:text-sm mb-1"><strong>Local:</strong> Igreja Santa
+                                <p class="text-terracotta-800 text-xs sm:text-sm mb-1"><strong>Local:</strong> Igreja Santa
                                     Terezinha do Menino Jesus</p>
                             </div>
-                            <div class="mt-4 pt-3 border-t border-silver-400/10">
+                            <div class="mt-4 pt-3 border-t border-terracotta-200">
                                 <a href="https://maps.app.goo.gl/wf5h4hhPb9nc7Bdj6" target="_blank"
-                                    class="w-full bg-silver-400/10 hover:bg-silver-300 hover:text-silver-900 text-silver-200 border border-silver-400/40 text-[11px] font-cinzel py-2.5 px-3 rounded-lg transition flex items-center justify-center gap-1.5">
+                                    class="w-full bg-terracotta-100 hover:bg-terracotta-600 hover:text-white text-terracotta-700 border border-terracotta-300 text-[11px] font-cinzel font-semibold py-2.5 px-3 rounded-lg transition flex items-center justify-center gap-1.5">
                                     <i class="fas fa-map-marker-alt"></i> Ver Cerimônia no Mapa
                                 </a>
                             </div>
@@ -400,22 +412,22 @@
 
                         <!-- Festa -->
                         <div
-                            class="bg-silver-900/60 p-5 sm:p-6 rounded-xl border border-silver-400/20 flex flex-col justify-between">
+                            class="bg-terracotta-50/60 p-5 sm:p-6 rounded-xl border border-terracotta-200 flex flex-col justify-between">
                             <div>
-                                <div class="flex items-center gap-2 mb-3 text-silver-300">
+                                <div class="flex items-center gap-2 mb-3 text-terracotta-700">
                                     <i class="fas fa-glass-cheers text-lg"></i>
-                                    <h4 class="font-cinzel text-lg font-semibold text-white">Recepção & Festa</h4>
+                                    <h4 class="font-cinzel text-lg font-semibold text-terracotta-900">Recepção & Festa</h4>
                                 </div>
-                                <p class="text-xs font-cinzel text-silver-300 uppercase tracking-widest mb-2"><i
+                                <p class="text-xs font-cinzel text-terracotta-600 uppercase font-semibold tracking-widest mb-2"><i
                                         class="far fa-clock mr-1"></i> Logo após a cerimônia</p>
-                                <p class="text-silver-200 text-xs sm:text-sm mb-1"><strong>Local:</strong> Flapinheiro
+                                <p class="text-terracotta-800 text-xs sm:text-sm mb-1"><strong>Local:</strong> Flapinheiro
                                 </p>
-                                <p class="text-silver-400 text-xs"><i class="fas fa-location-dot mr-1"></i> Rua: Luís
+                                <p class="text-terracotta-700 text-xs"><i class="fas fa-location-dot mr-1"></i> Rua: Luís
                                     Domingues</p>
                             </div>
-                            <div class="mt-4 pt-3 border-t border-silver-400/10">
+                            <div class="mt-4 pt-3 border-t border-terracotta-200">
                                 <a href="https://maps.app.goo.gl/EnpdXWATwBJ2uhz57" target="_blank"
-                                    class="w-full bg-silver-400/10 hover:bg-silver-300 hover:text-silver-900 text-silver-200 border border-silver-400/40 text-[11px] font-cinzel py-2.5 px-3 rounded-lg transition flex items-center justify-center gap-1.5">
+                                    class="w-full bg-terracotta-100 hover:bg-terracotta-600 hover:text-white text-terracotta-700 border border-terracotta-300 text-[11px] font-cinzel font-semibold py-2.5 px-3 rounded-lg transition flex items-center justify-center gap-1.5">
                                     <i class="fas fa-map-marker-alt"></i> Ver Festa no Mapa
                                 </a>
                             </div>
@@ -424,10 +436,10 @@
                     </div>
 
                     <!-- Salvar no Calendário -->
-                    <div class="mt-8 pt-6 border-t border-silver-400/20 text-center">
+                    <div class="mt-8 pt-6 border-t border-terracotta-200 text-center">
                         <button
                             onclick="addToCalendar('Casamento Denilson & Cristiane', 'Igreja Santa Terezinha do Menino Jesus / Na Flapinheiro', '2026-12-19T19:00:00')"
-                            class="w-full sm:w-auto bg-gradient-to-r from-silver-200 via-silver-300 to-silver-400 hover:brightness-110 active:scale-95 text-silver-900 font-cinzel font-bold text-xs py-3.5 px-8 rounded-full transition inline-flex items-center justify-center gap-2 shadow-lg tracking-wider">
+                            class="w-full sm:w-auto bg-gradient-to-r from-terracotta-500 via-terracotta-600 to-terracotta-700 hover:brightness-105 active:scale-95 text-white font-cinzel font-bold text-xs py-3.5 px-8 rounded-full transition inline-flex items-center justify-center gap-2 shadow-md tracking-wider">
                             <i class="far fa-calendar-plus text-sm"></i> Salvar Data no Google Agenda
                         </button>
                     </div>
@@ -435,11 +447,11 @@
 
                 <!-- Traje -->
                 <div
-                    class="mt-8 sm:mt-12 bg-silver-800/30 rounded-2xl p-6 sm:p-8 border border-silver-400/30 text-center reveal">
-                    <i class="fas fa-user-tie text-silver-300 text-xl sm:text-2xl mb-2 sm:mb-3"></i>
-                    <h4 class="font-cinzel text-xl sm:text-2xl font-semibold text-white mb-2">Traje: Passeio Completo
+                    class="mt-8 sm:mt-12 bg-white/80 rounded-2xl p-6 sm:p-8 border border-terracotta-200 text-center reveal shadow-sm">
+                    <i class="fas fa-user-tie text-terracotta-600 text-xl sm:text-2xl mb-2 sm:mb-3"></i>
+                    <h4 class="font-cinzel text-xl sm:text-2xl font-semibold text-terracotta-900 mb-2">Traje: Passeio Completo
                         / Social</h4>
-                    <p class="text-silver-300 text-xs font-light leading-relaxed max-w-lg mx-auto">
+                    <p class="text-terracotta-800 text-xs font-normal leading-relaxed max-w-lg mx-auto">
                         Sugerimos trajes sociais elegantes para os nossos convidados. Pedimos carinhosamente a gentileza
                         de evitar tons brancos ou pérola.
                     </p>
@@ -451,68 +463,68 @@
         <section id="presente" class="py-16 sm:py-24 px-4 max-w-4xl mx-auto">
             <div class="text-center mb-10 sm:mb-16 reveal">
                 <span
-                    class="font-cinzel text-silver-300 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] uppercase block mb-1 sm:mb-2">Mimo
+                    class="font-cinzel text-terracotta-600 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] font-semibold uppercase block mb-1 sm:mb-2">Mimo
                     aos Noivos</span>
-                <h2 class="font-cinzel text-3xl sm:text-5xl text-white font-semibold">Presente</h2>
-                <p class="text-silver-300 text-xs sm:text-sm font-light max-w-lg mx-auto mt-2 sm:mt-3">
+                <h2 class="font-cinzel text-3xl sm:text-5xl text-terracotta-900 font-semibold">Presente</h2>
+                <p class="text-terracotta-800 text-xs sm:text-sm font-normal max-w-lg mx-auto mt-2 sm:mt-3">
                     Sua presença é o nosso maior presente! Se desejar nos abençoar com uma contribuição para a nossa
                     nova fase, disponibilizamos nossa chave PIX abaixo:
                 </p>
                 <div
-                    class="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto mt-3 sm:mt-4">
+                    class="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-transparent via-terracotta-500 to-transparent mx-auto mt-3 sm:mt-4">
                 </div>
             </div>
 
             <!-- Card PIX Direto -->
             <div
-                class="bg-silver-800/40 backdrop-blur-xl border border-silver-400/40 rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center max-w-xl mx-auto shadow-2xl relative reveal">
+                class="bg-white/90 backdrop-blur-xl border border-terracotta-200 rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center max-w-xl mx-auto shadow-xl relative reveal">
                 <div
-                    class="w-14 h-14 sm:w-16 sm:h-16 bg-silver-400/10 text-silver-300 border border-silver-400/30 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-xl sm:text-2xl">
+                    class="w-14 h-14 sm:w-16 sm:h-16 bg-terracotta-100 text-terracotta-600 border border-terracotta-300 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-xl sm:text-2xl">
                     <i class="fas fa-qrcode"></i>
                 </div>
 
-                <h3 class="font-cinzel text-xl sm:text-2xl text-white font-bold mb-2">Chave PIX dos Noivos</h3>
-                <p class="text-xs text-silver-300 font-light mb-6">Escaneie o QR Code abaixo ou copie a chave PIX para
+                <h3 class="font-cinzel text-xl sm:text-2xl text-terracotta-900 font-bold mb-2">Chave PIX dos Noivos</h3>
+                <p class="text-xs text-terracotta-800 font-normal mb-6">Escaneie o QR Code abaixo ou copie a chave PIX para
                     realizar sua contribuição.</p>
 
                 <div
-                    class="bg-silver-950 p-4 sm:p-6 rounded-2xl border border-silver-400/30 mb-6 flex flex-col items-center">
+                    class="bg-terracotta-50/80 p-4 sm:p-6 rounded-2xl border border-terracotta-200 mb-6 flex flex-col items-center">
                     <!-- SVG do QR Code -->
                     <svg class="w-36 h-36 sm:w-44 sm:h-44 mb-4" viewBox="0 0 100 100" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect width="100" height="100" fill="white" />
-                        <path d="M10 10H40V40H10V10ZM15 15V35H35V15H15Z" fill="#0F172A" />
-                        <path d="M20 20H30V30H20V20Z" fill="#0F172A" />
-                        <path d="M60 10H90V40H60V10ZM65 15V35H85V15H65Z" fill="#0F172A" />
-                        <path d="M70 20H80V30H70V20Z" fill="#0F172A" />
-                        <path d="M10 60H40V90H10V60ZM15 65V85H35V65H15Z" fill="#0F172A" />
-                        <path d="M20 70H30V80H20V70Z" fill="#0F172A" />
+                        <path d="M10 10H40V40H10V10ZM15 15V35H35V15H15Z" fill="#4A1F15" />
+                        <path d="M20 20H30V30H20V20Z" fill="#4A1F15" />
+                        <path d="M60 10H90V40H60V10ZM65 15V35H85V15H65Z" fill="#4A1F15" />
+                        <path d="M70 20H80V30H70V20Z" fill="#4A1F15" />
+                        <path d="M10 60H40V90H10V60ZM15 65V85H35V65H15Z" fill="#4A1F15" />
+                        <path d="M20 70H30V80H20V70Z" fill="#4A1F15" />
                         <path
                             d="M50 10H55V25H50V10ZM55 30H60V40H55V30ZM70 50H90V55H70V50ZM50 60H65V75H50V60ZM75 75H90V90H75V75Z"
-                            fill="#0F172A" />
+                            fill="#4A1F15" />
                     </svg>
 
-                    <span class="text-xs font-cinzel text-silver-300 font-semibold mb-1">Chave PIX:</span>
-                    <span class="text-[11px] sm:text-xs text-silver-200 font-mono break-all select-all px-2"
+                    <span class="text-xs font-cinzel text-terracotta-700 font-bold mb-1">Chave PIX:</span>
+                    <span class="text-[11px] sm:text-xs text-terracotta-900 font-mono break-all select-all px-2"
                         id="pix-key-text">00020126360014BR.GOV.BCB.PIX0114+5511999999999</span>
                 </div>
 
                 <button onclick="copyPixKey()"
-                    class="w-full bg-gradient-to-r from-silver-200 via-silver-300 to-silver-400 hover:brightness-110 active:scale-95 text-silver-900 font-cinzel font-bold py-3.5 sm:py-4 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-lg uppercase tracking-wider">
+                    class="w-full bg-gradient-to-r from-terracotta-500 via-terracotta-600 to-terracotta-700 hover:brightness-105 active:scale-95 text-white font-cinzel font-bold py-3.5 sm:py-4 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-md uppercase tracking-wider">
                     <i class="far fa-copy text-sm sm:text-base"></i> Copiar Chave PIX
                 </button>
-                <span id="copy-toast" class="text-xs text-silver-200 hidden mt-4 block font-cinzel font-semibold">✓ Chave
+                <span id="copy-toast" class="text-xs text-terracotta-700 hidden mt-4 block font-cinzel font-semibold">✓ Chave
                     PIX copiada para a área de transferência!</span>
             </div>
         </section>
 
         <!-- RODAPÉ -->
-        <footer class="bg-silver-950 py-10 sm:py-12 text-center text-xs font-cinzel border-t border-silver-400/20">
+        <footer class="bg-white py-10 sm:py-12 text-center text-xs font-cinzel border-t border-terracotta-200">
             <div class="max-w-4xl mx-auto px-4 space-y-3">
-                <h3 class="font-cursive text-3xl sm:text-4xl text-silver-200">Denilson & Cristiane</h3>
-                <p class="tracking-[0.2em] sm:tracking-[0.25em] text-silver-400 uppercase text-[10px] sm:text-xs">
+                <h3 class="font-cursive text-3xl sm:text-4xl text-terracotta-600">Denilson & Cristiane</h3>
+                <p class="tracking-[0.2em] sm:tracking-[0.25em] text-terracotta-700 font-semibold uppercase text-[10px] sm:text-xs">
                     • 19.12.2026 •</p>
-                <p class="text-silver-500 font-sans text-[10px] pt-2 sm:pt-4">Desenvolvido com carinho para o nosso
+                <p class="text-terracotta-400 font-sans text-[10px] pt-2 sm:pt-4">Desenvolvido com carinho para o nosso
                     casamento</p>
             </div>
         </footer>
@@ -545,7 +557,7 @@
             window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
         }
 
-        /* --- 3. ANIMAÇÃO DE BRILHOS / PARTÍCULAS PRATEADAS --- */
+        /* --- 3. ANIMAÇÃO DE BRILHOS / PARTÍCULAS --- */
         let canvas, ctx, particles = [];
         function initSparkleParticles() {
             canvas = document.getElementById('sparkle-canvas');
@@ -561,7 +573,7 @@
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
                     radius: Math.random() * 1.5 + 0.5,
-                    color: '#E2E8F0',
+                    color: '#C26D57',
                     alpha: Math.random() * 0.6 + 0.2,
                     speedY: -(Math.random() * 0.4 + 0.1),
                     speedX: Math.random() * 0.4 - 0.2
@@ -596,7 +608,7 @@
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                 ctx.fillStyle = p.color;
                 ctx.shadowBlur = 6;
-                ctx.shadowColor = '#E2E8F0';
+                ctx.shadowColor = '#C26D57';
                 ctx.fill();
                 ctx.restore();
             });
@@ -736,7 +748,7 @@
                 particleCount: 40,
                 spread: 80,
                 origin: { y: 0.5 },
-                colors: ['#E2E8F0', '#CBD5E1', '#FFFFFF']
+                colors: ['#C26D57', '#E7BCAF', '#D4AF37']
             });
         }
 
