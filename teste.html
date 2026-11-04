@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denilson &amp; Cristiane — Convite de Casamento</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500;600&family=Alex+Brush&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome & Canvas Confetti -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        marsala: {
+                            800: '#5C121D',
+                            850: '#4A0E17',
+                            900: '#2D080E',
+                            950: '#1A0408',
+                        },
+                        gold: {
+                            100: '#FFF6D6',
+                            300: '#F3E5AB',
+                            400: '#E6C687',
+                            500: '#D4AF37',
+                            600: '#AA8828',
+                            700: '#85681A'
+                        },
+                        ivory: '#FAF8F5'
+                    },
+                    fontFamily: {
+                        cinzel: ['"Cinzel"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                        cursive: ['"Alex Brush"', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos Customizados & Mecanismos 3D na Cor Marsala */
+        body {
+            background-color: #1A0408;
+            color: #FAF8F5;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            width: 100vw;
+        }
+
+        /* Partículas & Canvas */
+        #sparkle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        /* Envelope horizontal marfim; no clique, apenas flutua e retorna. */
+        .gatefold-wrapper {
+            perspective: 1500px;
+            background: radial-gradient(ellipse at center, #f5f2e9 0%, #e8e5dc 72%, #dedbd2 100%);
+        }
+
+        .envelope-card {
+            position: relative;
+            width: min(92vw, 760px);
+            aspect-ratio: 1.72 / 1;
+            border: 1px solid rgba(177, 174, 164, .95);
+            background: #f5f3ed;
+            box-shadow: 0 28px 70px rgba(40, 38, 33, .24), 0 2px 10px rgba(40, 38, 33, .12);
+            transform-style: preserve-3d;
+        }
+
+        .envelope-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .34), transparent 42%, rgba(220, 217, 207, .18));
+        }
+
+        .envelope-card::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 68%;
+            z-index: 2;
+            border-top: 1px solid rgba(109, 111, 114, .28);
+            box-shadow: 0 -2px 3px rgba(255, 255, 255, .55);
+            pointer-events: none;
+        }
+
+        .gatefold-door {
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            background: linear-gradient(145deg, #fbfaf5 0%, #f1efe8 70%, #e9e7df 100%);
+        }
+
+        .gatefold-door-top {
+            border-bottom: 1px solid rgba(100, 101, 108, .3);
+        }
+
+        .gatefold-door-bottom {
+            border-top: 1px solid rgba(100, 101, 108, .3);
+        }
+
+        .gatefold-clicked .envelope-card {
+            animation: envelope-hover-click .95s cubic-bezier(.2, .7, .25, 1) both;
+        }
+
+        @keyframes envelope-hover-click {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                box-shadow: 0 28px 70px rgba(40, 38, 33, .24), 0 2px 10px rgba(40, 38, 33, .12);
+            }
+
+            27% {
+                transform: translateY(-20px) rotate(-.7deg) scale(1.03);
+                box-shadow: 0 45px 90px rgba(40, 38, 33, .3), 0 8px 24px rgba(40, 38, 33, .15);
+            }
+
+            55% {
+                transform: translateY(-24px) rotate(.55deg) scale(1.035);
+                box-shadow: 0 48px 96px rgba(40, 38, 33, .3), 0 10px 28px rgba(40, 38, 33, .16);
+            }
+
+            78% {
+                transform: translateY(-10px) rotate(-.25deg) scale(1.015);
+                box-shadow: 0 36px 78px rgba(40, 38, 33, .26), 0 4px 18px rgba(40, 38, 33, .14);
+            }
+        }
+
+        @media (max-width: 420px) {
+            .envelope-card {
+                width: 94vw;
+                aspect-ratio: 1.58 / 1;
+            }
+        }
+
+        /* Brilho Dourado */
+        .gold-border-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25), inset 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF6D6 0%, #F3E5AB 25%, #D4AF37 50%, #AA8828 75%, #F3E5AB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 8s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Animações de Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1A0408;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #85681A;
+            border-radius: 4px;
+        }
+
+        /* Acessibilidade: foco visível e respeito à preferência por menos movimento. */
+        :focus-visible {
+            outline: 2px solid #F3E5AB;
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto !important;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* =============== */
+        @media (max-width: 640px) {
+
+            .gatefold-door {
+                transition-duration: 1.5s, 0.75s;
+            }
+
+            .my-auto {
+                margin: auto;
+            }
+
+            nav a {
+                margin: auto;
+                text-align: center;
+            }
+
+
+
+        }
+
+        .borda-esquerda {
+            width: 24vw;
+            left: -2vw;
+        }
+
+        .borda-direita {
+            width: 26vw;
+            right: -2vw;
+        }
+    </style>
+</head>
+
+<body class="relative selection:bg-gold-500 selection:text-marsala-950 overflow-x-hidden">
+
+    <!-- Canvas para Partículas de Brilho -->
+    <canvas id="sparkle-canvas"></canvas>
+
+    <!-- Botão Flutuante do Áudio -->
+    <!-- <div id="audio-control"
+        class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center space-x-2 bg-marsala-900/90 backdrop-blur-md p-3 sm:p-3.5 rounded-full border border-gold-500/40 shadow-2xl cursor-pointer hover:border-gold-400 transition transform hover:scale-105 active:scale-95">
+        <button id="music-btn" aria-label="Alternar Trilha Sonora"
+            class="text-gold-400 focus:outline-none flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7">
+            <i id="music-icon" class="fas fa-volume-mute text-base sm:text-lg"></i>
+        </button>
+        <span class="text-[10px] sm:text-xs font-cinzel text-gold-300 tracking-wider pr-2 hidden sm:inline"
+            id="music-text">Música de Fundo</span>
+    </div> -->
+
+    <!-- CAPA DO CONVITE: ENVELOPE HORIZONTAL DA REFERÊNCIA -->
+    <div id="gatefold-container"
+        class="gatefold-wrapper fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
+        <div
+            class="gatefold-overlay absolute inset-0 bg-[#e8e5dc]/35 backdrop-blur-[1px] transition-opacity duration-700">
+        </div>
+        <div class="envelope-card z-10">
+            <div aria-hidden="true" class="gatefold-door gatefold-door-top absolute inset-x-0 top-0 h-[68%] z-20"></div>
+            <div aria-hidden="true" class="gatefold-door gatefold-door-bottom absolute inset-x-0 bottom-0 h-[32%] z-20">
+            </div>
+            <div class="envelope-ornaments absolute inset-0 z-30">
+                <!-- Florais delicados nos cantos opostos. -->
+                <!-- <svg aria-hidden="true" viewBox="0 0 160 125" class="absolute left-0 top-0 w-24 sm:w-36 h-auto">
+                    <g fill="none" stroke="#6f9d9c" stroke-width="2" stroke-linecap="round">
+                        <path d="M10 5C30 32 35 52 66 77M42 4C53 29 63 45 90 58M8 56C30 58 48 70 65 99" />
+                        <path
+                            d="M25 34C12 24 10 13 20 15C31 17 31 29 25 34ZM49 51C37 40 39 30 49 34C58 38 57 47 49 51ZM69 76C56 68 55 57 66 59C76 61 77 70 69 76Z"
+                            fill="#8abcc0" />
+                        <path
+                            d="M46 22C58 10 69 12 64 22C60 31 51 30 46 22ZM80 53C91 41 102 44 96 53C91 62 83 61 80 53Z"
+                            fill="#9ac6c4" />
+                    </g>
+                    <g fill="#71aeb9" stroke="#e9f0e9" stroke-width="1.5">
+                        <path
+                            d="M85 7C91 10 94 17 90 23C97 20 104 23 105 30C106 36 100 40 94 38C99 43 97 51 91 53C85 55 80 49 82 43C77 48 69 46 67 40C65 34 71 29 77 30C71 26 72 18 77 15C81 12 84 14 85 7Z" />
+                        <path
+                            d="M122 42C128 45 131 51 127 57C134 54 141 58 141 64C142 70 136 73 130 71C135 76 133 83 127 86C121 87 117 82 119 76C114 81 106 79 104 73C102 67 108 62 114 63C108 59 109 52 114 49C118 46 121 48 122 42Z" />
+                    </g>
+                    <circle cx="87" cy="35" r="5" fill="#d5b86d" />
+                    <circle cx="124" cy="67" r="4" fill="#d5b86d" />
+                </svg>
+                <svg aria-hidden="true" viewBox="0 0 160 125"
+                    class="absolute right-0 bottom-0 w-24 sm:w-36 h-auto rotate-180">
+                    <g fill="none" stroke="#6f9d9c" stroke-width="2" stroke-linecap="round">
+                        <path d="M10 5C30 32 35 52 66 77M42 4C53 29 63 45 90 58M8 56C30 58 48 70 65 99" />
+                        <path
+                            d="M25 34C12 24 10 13 20 15C31 17 31 29 25 34ZM49 51C37 40 39 30 49 34C58 38 57 47 49 51ZM69 76C56 68 55 57 66 59C76 61 77 70 69 76Z"
+                            fill="#8abcc0" />
+                        <path
+                            d="M46 22C58 10 69 12 64 22C60 31 51 30 46 22ZM80 53C91 41 102 44 96 53C91 62 83 61 80 53Z"
+                            fill="#9ac6c4" />
+                    </g>
+                    <g fill="#71aeb9" stroke="#e9f0e9" stroke-width="1.5">
+                        <path
+                            d="M85 7C91 10 94 17 90 23C97 20 104 23 105 30C106 36 100 40 94 38C99 43 97 51 91 53C85 55 80 49 82 43C77 48 69 46 67 40C65 34 71 29 77 30C71 26 72 18 77 15C81 12 84 14 85 7Z" />
+                        <path
+                            d="M122 42C128 45 131 51 127 57C134 54 141 58 141 64C142 70 136 73 130 71C135 76 133 83 127 86C121 87 117 82 119 76C114 81 106 79 104 73C102 67 108 62 114 63C108 59 109 52 114 49C118 46 121 48 122 42Z" />
+                    </g>
+                    <circle cx="87" cy="35" r="5" fill="#d5b86d" />
+                    <circle cx="124" cy="67" r="4" fill="#d5b86d" />
+                </svg> -->
+
+                <img src="borda-esquerda.svg" alt="Bordado" class="borda-esquerda" />
+
+                <img src="borda-direita.svg" alt="" aria-hidden="true"
+                    class="absolute right-0 bottom-0 w-24 sm:w-36 h-auto rotate-0" />
+
+                <!-- Fita azul-marinho vertical com laço amarrado à esquerda. -->
+                <div aria-hidden="true" class="envelope-ribbon-wrap absolute inset-y-0 left-[28%] w-5 sm:w-7">
+                    <span
+                        class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-3 sm:w-4 bg-gradient-to-r from-[#151f5c] via-[#263787] to-[#111b53] shadow-[0_1px_6px_rgba(17,27,83,0.25)]"></span>
+                    <svg viewBox="0 0 220 190"
+                        class="absolute left-1/2 top-1/2 w-28 sm:w-44 h-auto -translate-x-1/2 -translate-y-1/2 drop-shadow-md">
+                        <path
+                            d="M108 79C87 59 52 30 36 42C17 57 50 84 105 91C52 92 18 105 31 123C45 143 82 115 111 96C143 109 176 138 191 122C207 104 167 89 117 89C163 78 191 55 175 41C159 27 128 59 108 79Z"
+                            fill="#202f79" stroke="#d8ddec" stroke-width="2" />
+                        <path d="M104 91L83 173L104 157L119 181L119 93M116 91L143 162L160 149L126 88" fill="#202f79"
+                            stroke="#d8ddec" stroke-width="2" stroke-linejoin="round" />
+                        <path
+                            d="M108 79C87 59 52 30 36 42C17 57 50 84 105 91M117 89C163 78 191 55 175 41C159 27 128 59 108 79"
+                            fill="none" stroke="#6976b2" stroke-width="2" />
+                        <circle cx="111" cy="88" r="8" fill="#263787" stroke="#d8ddec" stroke-width="2" />
+                    </svg>
+                </div>
+
+                <!-- Selo ornamentado e iniciais dos noivos à direita. -->
+                <button id="open-doors-btn" aria-label="Abrir convite de Denilson e Cristiane"
+                    class="envelope-seal absolute left-[68%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-44 sm:h-44 flex flex-col items-center justify-center text-[#293574] focus:outline-none transition hover:scale-105 active:scale-95">
+                    <svg aria-hidden="true" viewBox="0 0 180 180" class="absolute inset-0 w-full h-full" fill="none"
+                        stroke="#555c78" stroke-width="1.2">
+                        <circle cx="90" cy="90" r="55" />
+                        <circle cx="90" cy="90" r="50" stroke-opacity=".55" />
+                        <path
+                            d="M90 21C83 15 87 8 90 5C94 9 98 15 90 21ZM90 159C97 165 93 172 90 175C86 171 82 165 90 159ZM21 90C15 83 8 87 5 90C9 94 15 98 21 90ZM159 90C165 97 172 93 175 90C171 86 165 82 159 90Z" />
+                        <path
+                            d="M42 42C33 38 34 30 36 26C42 29 47 35 42 42ZM138 42C147 38 146 30 144 26C138 29 133 35 138 42ZM42 138C33 142 34 150 36 154C42 151 47 145 42 138ZM138 138C147 142 146 150 144 154C138 151 133 145 138 138Z" />
+                        <path
+                            d="M57 25C48 16 53 11 58 8M123 25C132 16 127 11 122 8M57 155C48 164 53 169 58 172M123 155C132 164 127 169 122 172"
+                            stroke-opacity=".7" />
+                    </svg>
+                    <span
+                        class="relative z-10 font-cinzel text-lg sm:text-3xl tracking-[0.12em] sm:tracking-[0.18em] text-[#34384e]">D<span
+                            class="font-cursive text-[#263787]">&amp;</span>C</span>
+                    <span
+                        class="relative z-10 font-sans text-[7px] sm:text-[9px] tracking-[0.22em] text-[#555c78] mt-2">19
+                        . 12 . 2026</span>
+                    <span
+                        class="relative z-10 font-sans text-[7px] sm:text-[9px] tracking-[0.2em] text-[#263787] mt-2 uppercase">Toque
+                        para abrir</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL DO CONVITE -->
+    <main id="main-content" class="relative opacity-0 transition-opacity duration-1000 bg-marsala-950 text-ivory">
+
+        <!-- NAVBAR -->
+        <nav
+            class="sticky top-0 z-30 bg-marsala-950/90 backdrop-blur-md border-b border-gold-500/20 py-3 sm:py-4 px-4 sm:px-6 transition">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-2 md:gap-6 justify-between items-center">
+                <a href="#hero" class="font-cinzel text-lg sm:text-xl font-bold text-gold-400 tracking-widest ">D &
+                    C</a>
+                <div
+                    class="flex flex-wrap justify-center gap-x-5 sm:gap-x-8 gap-y-2 text-[10px] sm:text-xs font-cinzel tracking-[0.15em] sm:tracking-[0.2em] text-gold-100/80 uppercase">
+                    <a href="#hero" class="hover:text-gold-400 transition">Início</a>
+                    <a href="#evento" class="hover:text-gold-400 transition">O Evento</a>
+                    <a href="#presente" class="hover:text-gold-400 transition">Presente</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- SEÇÃO HERO -->
+        <section id="hero"
+            class="relative min-h-[90vh] sm:min-h-[92vh] flex flex-col items-center justify-center text-center px-4 py-12 sm:py-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-marsala-850 via-marsala-900 to-marsala-950">
+
+            <div class="max-w-4xl mx-auto reveal w-full">
+                <div class="flex items-center justify-center space-x-2 sm:space-x-4 mb-4 sm:mb-6">
+                    <div class="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-transparent to-gold-500/60"></div>
+                    <span
+                        class="font-cinzel text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] text-gold-400">Junte-se
+                        a nós para celebrar</span>
+                    <div class="h-[1px] w-8 sm:w-12 bg-gradient-to-l from-transparent to-gold-500/60"></div>
+                </div>
+
+                <h1
+                    class="font-cinzel text-3xl sm:text-6xl md:text-7xl font-bold text-gold-300 tracking-wide gold-gradient-text my-2 sm:my-4 leading-tight">
+                    Denilson & Cristiane
+                </h1>
+
+                <p class="font-cursive text-2xl sm:text-4xl text-gold-400/90 my-4 sm:my-6 px-2">
+                    "O amor tudo sofre, tudo crê, tudo espera, tudo suporta."
+                </p>
+
+                <p
+                    class="font-cinzel text-xs sm:text-base text-gold-100/90 tracking-[0.15em] sm:tracking-[0.25em] uppercase mb-8 sm:mb-12">
+                    19 DE DEZEMBRO DE 2026
+                </p>
+
+                <!-- CONTAGEM REGRESSIVA -->
+                <div aria-label="Contagem regressiva para o casamento"
+                    class="grid grid-cols-4 gap-2 sm:gap-6 max-w-xs sm:max-w-md mx-auto mb-10 sm:mb-14">
+                    <div
+                        class="bg-marsala-900/60 backdrop-blur border border-gold-500/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex flex-col items-center">
+                        <span id="cd-days" class="font-cinzel text-xl sm:text-4xl text-gold-300 font-bold">00</span>
+                        <span
+                            class="text-[8px] sm:text-[10px] font-cinzel text-gold-400/80 uppercase tracking-widest mt-0.5 sm:mt-1">Dias</span>
+                    </div>
+                    <div
+                        class="bg-marsala-900/60 backdrop-blur border border-gold-500/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex flex-col items-center">
+                        <span id="cd-hours" class="font-cinzel text-xl sm:text-4xl text-gold-300 font-bold">00</span>
+                        <span
+                            class="text-[8px] sm:text-[10px] font-cinzel text-gold-400/80 uppercase tracking-widest mt-0.5 sm:mt-1">Horas</span>
+                    </div>
+                    <div
+                        class="bg-marsala-900/60 backdrop-blur border border-gold-500/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex flex-col items-center">
+                        <span id="cd-minutes" class="font-cinzel text-xl sm:text-4xl text-gold-300 font-bold">00</span>
+                        <span
+                            class="text-[8px] sm:text-[10px] font-cinzel text-gold-400/80 uppercase tracking-widest mt-0.5 sm:mt-1">Min</span>
+                    </div>
+                    <div
+                        class="bg-marsala-900/60 backdrop-blur border border-gold-500/30 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex flex-col items-center">
+                        <span id="cd-seconds" class="font-cinzel text-xl sm:text-4xl text-gold-300 font-bold">00</span>
+                        <span
+                            class="text-[8px] sm:text-[10px] font-cinzel text-gold-400/80 uppercase tracking-widest mt-0.5 sm:mt-1">Seg</span>
+                    </div>
+                </div>
+
+                <!-- BOTAO RSVP WHATSAPP -->
+                <button onclick="confirmViaWhatsApp()" aria-label="Confirmar presença pelo WhatsApp"
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-marsala-800 via-marsala-850 to-marsala-800 text-gold-300 font-cinzel font-bold text-[10px] sm:text-xs uppercase px-6 sm:px-10 py-3.5 sm:py-4 rounded-full shadow-2xl hover:brightness-110 active:scale-95 transition transform tracking-[0.15em] sm:tracking-[0.2em] border border-gold-500/50">
+                    <i class="fab fa-whatsapp text-base sm:text-lg text-gold-400"></i> CONFIRMAR PRESENÇA VIA WHATSAPP
+                </button>
+            </div>
+        </section>
+
+        <!-- CARD UNIFICADO DO EVENTO -->
+        <section id="evento" class="py-16 sm:py-24 bg-marsala-900/30 px-4 border-y border-gold-500/20">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-10 sm:mb-16 reveal">
+                    <span
+                        class="font-cinzel text-gold-400 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] uppercase block mb-1 sm:mb-2">Programação
+                        Completa</span>
+                    <h2 class="font-cinzel text-3xl sm:text-5xl text-gold-300 font-semibold">O Grande Dia</h2>
+                    <div
+                        class="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-3 sm:mt-4">
+                    </div>
+                </div>
+
+                <!-- Card Unificado de Cerimônia & Festa -->
+                <div
+                    class="bg-marsala-900/50 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-gold-500/30 shadow-2xl hover:border-gold-400 transition duration-500 reveal">
+                    <div class="text-center mb-8 sm:mb-10">
+                        <div
+                            class="w-14 h-14 sm:w-18 sm:h-18 bg-gold-500/10 text-gold-400 border border-gold-500/40 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-xl sm:text-2xl">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <h3 class="font-cinzel text-2xl sm:text-4xl text-gold-300 font-semibold mb-2">Cerimônia &
+                            Recepção</h3>
+                        <p
+                            class="font-cinzel text-gold-400 font-medium text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] uppercase">
+                            19 DE DEZEMBRO DE 2026</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-6 border-t border-gold-500/20">
+
+                        <!-- Cerimônia -->
+                        <div
+                            class="bg-marsala-950/60 p-5 sm:p-6 rounded-xl border border-gold-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-3 text-gold-400">
+                                    <i class="fas fa-church text-lg"></i>
+                                    <h4 class="font-cinzel text-lg font-semibold text-gold-300">Cerimônia Religiosa</h4>
+                                </div>
+                                <p class="text-xs font-cinzel text-gold-400 uppercase tracking-widest mb-2"><i
+                                        class="far fa-clock mr-1"></i> Às 19:00 Horas</p>
+                                <p class="text-stone-300 text-xs sm:text-sm mb-1"><strong>Local:</strong> Igreja Santa
+                                    Terezinha do Menino Jesus</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-gold-500/10">
+                                <a href="https://maps.app.goo.gl/wf5h4hhPb9nc7Bdj6" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="w-full bg-gold-500/10 hover:bg-gold-500 hover:text-marsala-950 text-gold-300 border border-gold-500/40 text-[11px] font-cinzel py-2.5 px-3 rounded-lg transition flex items-center justify-center gap-1.5">
+                                    <i class="fas fa-map-marker-alt"></i> Ver Cerimônia no Mapa
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Festa -->
+                        <div
+                            class="bg-marsala-950/60 p-5 sm:p-6 rounded-xl border border-gold-500/20 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-3 text-gold-400">
+                                    <i class="fas fa-glass-cheers text-lg"></i>
+                                    <h4 class="font-cinzel text-lg font-semibold text-gold-300">Recepção & Festa</h4>
+                                </div>
+                                <p class="text-xs font-cinzel text-gold-400 uppercase tracking-widest mb-2"><i
+                                        class="far fa-clock mr-1"></i> Logo após a cerimônia</p>
+                                <p class="text-stone-300 text-xs sm:text-sm mb-1"><strong>Local:</strong> Flapinheiro
+                                </p>
+                                <p class="text-stone-400 text-xs"><i class="fas fa-location-dot mr-1"></i> Rua: Luís
+                                    Domingues</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-gold-500/10">
+                                <a href="https://maps.app.goo.gl/EnpdXWATwBJ2uhz57" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="w-full bg-gold-500/10 hover:bg-gold-500 hover:text-marsala-950 text-gold-300 border border-gold-500/40 text-[11px] font-cinzel py-2.5 px-3 rounded-lg transition flex items-center justify-center gap-1.5">
+                                    <i class="fas fa-map-marker-alt"></i> Ver Festa no Mapa
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Salvar no Calendário -->
+                    <div class="mt-8 pt-6 border-t border-gold-500/20 text-center">
+                        <button
+                            onclick="addToCalendar('Casamento Denilson & Cristiane', 'Igreja Santa Terezinha do Menino Jesus / Na Flapinheiro', '2026-12-19T19:00:00')"
+                            class="w-full sm:w-auto bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 hover:brightness-110 active:scale-95 text-marsala-950 font-cinzel font-bold text-xs py-3.5 px-8 rounded-full transition inline-flex items-center justify-center gap-2 shadow-lg tracking-wider">
+                            <i class="far fa-calendar-plus text-sm"></i> Salvar Data no Google Agenda
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Traje -->
+                <div
+                    class="mt-8 sm:mt-12 bg-marsala-900/40 rounded-2xl p-6 sm:p-8 border border-gold-500/30 text-center reveal">
+                    <i class="fas fa-user-tie text-gold-400 text-xl sm:text-2xl mb-2 sm:mb-3"></i>
+                    <h4 class="font-cinzel text-xl sm:text-2xl font-semibold text-gold-300 mb-2">Traje: Passeio Completo
+                        / Social</h4>
+                    <p class="text-stone-300 text-xs font-light leading-relaxed max-w-lg mx-auto">
+                        Sugerimos trajes sociais elegantes para os nossos convidados. Pedimos carinhosamente a gentileza
+                        de evitar tons brancos ou pérola.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- SEÇÃO PRESENTE -->
+        <section id="presente" class="py-16 sm:py-24 px-4 max-w-4xl mx-auto">
+            <div class="text-center mb-10 sm:mb-16 reveal">
+                <span
+                    class="font-cinzel text-gold-400 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] uppercase block mb-1 sm:mb-2">Mimo
+                    aos Noivos</span>
+                <h2 class="font-cinzel text-3xl sm:text-5xl text-gold-300 font-semibold">Presente</h2>
+                <p class="text-stone-300 text-xs sm:text-sm font-light max-w-lg mx-auto mt-2 sm:mt-3">
+                    Sua presença é o nosso maior presente. Caso deseje nos presentear, em breve compartilharemos por
+                    aqui as informações com segurança.
+                </p>
+                <div
+                    class="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-3 sm:mt-4">
+                </div>
+            </div>
+            <div
+                class="bg-marsala-900/50 backdrop-blur-xl border border-gold-500/40 rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-center max-w-xl mx-auto shadow-2xl reveal">
+                <div
+                    class="w-14 h-14 sm:w-16 sm:h-16 bg-gold-500/10 text-gold-400 border border-gold-500/30 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-xl sm:text-2xl">
+                    <i class="fas fa-gift" aria-hidden="true"></i>
+                </div>
+                <h3 class="font-cinzel text-xl sm:text-2xl text-gold-300 font-bold mb-2">Com carinho</h3>
+                <p class="text-xs sm:text-sm text-stone-300 font-light">Os dados para presente serão informados pelos
+                    noivos.</p>
+            </div>
+        </section>
+
+        <!-- RODAPÉ -->
+        <footer class="bg-marsala-950 py-10 sm:py-12 text-center text-xs font-cinzel border-t border-gold-500/20">
+            <div class="max-w-4xl mx-auto px-4 space-y-3">
+                <h3 class="font-cursive text-3xl sm:text-4xl text-gold-400">Denilson & Cristiane</h3>
+                <p class="tracking-[0.2em] sm:tracking-[0.25em] text-gold-500/70 uppercase text-[10px] sm:text-xs">
+                    19.12.2026</p>
+                <p class="text-stone-500 font-sans text-[10px] pt-2 sm:pt-4">Desenvolvido com carinho para o nosso
+                    casamento</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- SCRIPTS DE LÓGICA E INTERAÇÃO -->
+    <script>
+        /* --- 1. HOVER DO ENVELOPE AO CLICAR --- */
+        const gatefoldContainer = document.getElementById('gatefold-container');
+        const openBtn = document.getElementById('open-doors-btn');
+        const mainContent = document.getElementById('main-content');
+
+        openBtn.addEventListener('click', () => {
+            gatefoldContainer.classList.add('gatefold-clicked');
+            playAmbientSound();
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            setTimeout(() => {
+                gatefoldContainer.style.display = 'none';
+                mainContent.classList.remove('opacity-0');
+            }, reduceMotion ? 80 : 1050);
+        });
+
+        /* --- 2. REDIRECIONAMENTO RSVP WHATSAPP --- */
+        // Personalize com o número dos noivos em formato internacional, só com dígitos.
+        // Exemplo: 55 + DDD + número. Mantido vazio para evitar envio ao telefone de demonstração.
+        const RSVP_PHONE = "";
+        function confirmViaWhatsApp() {
+            if (!RSVP_PHONE) {
+                alert("O contato para confirmação de presença será informado pelos noivos.");
+                return;
+            }
+            const message = encodeURIComponent("Olá Denilson e Cristiane! Gostaria de confirmar minha presença no casamento de vocês no dia 19/12/2026!");
+            window.open(`https://wa.me/${RSVP_PHONE}?text=${message}`, '_blank', 'noopener,noreferrer');
+        }
+
+        /* --- 3. ANIMAÇÃO DE BRILHOS / PARTÍCULAS --- */
+        let canvas, ctx, particles = [];
+        function initSparkleParticles() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            canvas = document.getElementById('sparkle-canvas');
+            ctx = canvas.getContext('2d');
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const count = window.innerWidth < 640 ? 25 : 40;
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.5 + 0.5,
+                    color: '#D4AF37',
+                    alpha: Math.random() * 0.6 + 0.2,
+                    speedY: -(Math.random() * 0.4 + 0.1),
+                    speedX: Math.random() * 0.4 - 0.2
+                });
+            }
+
+            animateParticles();
+        }
+
+        function resizeCanvas() {
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.y += p.speedY;
+                p.x += p.speedX;
+
+                if (p.y < 0) {
+                    p.y = canvas.height;
+                    p.x = Math.random() * canvas.width;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = '#D4AF37';
+                ctx.fill();
+                ctx.restore();
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        /* --- 4. CONTAGEM REGRESSIVA --- */
+        const weddingDate = new Date('2026-12-19T19:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+                document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /* --- 5. REVEAL AO ROLAR --- */
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+
+            reveals.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < windowHeight - 60) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        /* --- 6. ÁUDIO DE FUNDO (WEB AUDIO API) --- */
+        let audioCtx = null;
+        let isPlaying = false;
+        let audioInterval = null;
+
+        function playAmbientSound() {
+            if (isPlaying) return;
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+                isPlaying = true;
+                updateAudioUI(true);
+
+                const chord = [220.00, 277.18, 329.63, 440.00, 554.37];
+                let noteIdx = 0;
+
+                audioInterval = setInterval(() => {
+                    if (!isPlaying || !audioCtx) return;
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+
+                    osc.type = 'triangle';
+                    osc.frequency.value = chord[noteIdx];
+
+                    gain.gain.setValueAtTime(0, audioCtx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.4);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 3.0);
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 3.1);
+
+                    noteIdx = (noteIdx + 1) % chord.length;
+                }, 1800);
+            } catch (e) { }
+        }
+
+        function toggleAudio() {
+            if (isPlaying) {
+                if (audioCtx) audioCtx.suspend();
+                clearInterval(audioInterval);
+                isPlaying = false;
+                updateAudioUI(false);
+            } else {
+                if (audioCtx) {
+                    audioCtx.resume();
+                    playAmbientSound();
+                } else {
+                    playAmbientSound();
+                }
+            }
+        }
+
+        function updateAudioUI(playing) {
+            const icon = document.getElementById('music-icon');
+            const text = document.getElementById('music-text');
+            if (playing) {
+                icon.className = 'fas fa-volume-up text-base sm:text-lg';
+                text.innerText = 'Tocando Trilha';
+            } else {
+                icon.className = 'fas fa-volume-mute text-base sm:text-lg';
+                text.innerText = 'Trilha Pausada';
+            }
+        }
+
+        document.getElementById('audio-control').addEventListener('click', toggleAudio);
+
+        /* --- 7. UTILITÁRIOS --- */
+
+        function triggerConfetti() {
+            confetti({
+                particleCount: 40,
+                spread: 80,
+                origin: { y: 0.5 },
+                colors: ['#D4AF37', '#F3E5AB']
+            });
+        }
+
+        function addToCalendar(title, location, startDate) {
+            const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&location=${encodeURIComponent(location)}&dates=${startDate.replace(/[-:]/g, '')}/${startDate.replace(/[-:]/g, '')}`;
+            window.open(googleCalUrl, '_blank');
+        }
+    </script>
+</body>
+
+</html>
