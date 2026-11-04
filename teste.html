@@ -245,13 +245,18 @@
         }
 
         .borda-esquerda {
-            width: 27vw;
+            width: 29vw;
             left: -2vw;
         }
 
         .borda-direita {
             width: 27vw;
             right: -2vw;
+            position: absolute !important;
+            /* Necessário para o z-index funcionar */
+            z-index: -1;
+            /* Um valor negativo joga a imagem para trás do texto/elementos normais */
+
         }
 
         .logo {
@@ -333,7 +338,7 @@
                 <img src="borda-esquerda.svg" alt="Bordado" class="borda-esquerda" />
 
                 <img src="borda-direita.svg" alt="" aria-hidden="true"
-                    class="absolute right-0 bottom-0 w-24 sm:w-36 h-auto rotate-0" />
+                    class="borda-direita absolute right-0 bottom-0  sm:w-36 h-auto rotate-0" />
 
                 <!-- Fita azul-marinho vertical com laço amarrado à esquerda. -->
                 <div aria-hidden="true" class="envelope-ribbon-wrap absolute inset-y-0 left-[28%] w-5 sm:w-7">
