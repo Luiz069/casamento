@@ -58,6 +58,11 @@
             width: 100vw;
         }
 
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
         /* Partículas & Canvas */
         #sparkle-canvas {
             position: fixed;
@@ -140,7 +145,7 @@
         }
 
         /* Scrollbar Personalizada */
-        ::-webkit-scrollbar {
+        /* ::-webkit-scrollbar {
             width: 6px;
         }
 
@@ -151,7 +156,7 @@
         ::-webkit-scrollbar-thumb {
             background: #D4AF37;
             border-radius: 4px;
-        }
+        } */
 
         /* =============== */
         @media (max-width: 640px) {
@@ -169,6 +174,63 @@
                 margin: auto;
             }
         }
+
+        /* =============== */
+        .borda-esquerda {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+        }
+
+        .borda-esquerda img {
+            width: 60vw !important;
+            height: auto;
+        }
+
+        .borda-direita {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+        }
+
+        .borda-direita img {
+            width: 60vw !important;
+            height: auto;
+        }
+
+        .selo-nome {
+            /* Tamanhos responsivos (equivalente a w-20 h-20, sm:w-28, md:w-32) */
+            width: 6.8rem !important;
+            /* 80px */
+            height: 6.8rem !important;
+
+            border-radius: 9999px;
+            /* rounded-full */
+
+            /* Gradiente de fundo (bg-gradient-to-br from-gold-100 via-gold-400 to-gold-600) */
+            /* background-image: linear-gradient(to bottom right, var(--gold-100, #fef08a), var(--gold-400, #facc15), var(--gold-600, #ca8a04)); */
+            background: #f7f3ef;
+
+            /* Padding (p-0.5 sm:p-1) */
+            padding: 0.125rem;
+            /* 2px */
+
+            /* Sombra (shadow-2xl) */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+            /* Transição suave (transition duration-300) */
+            transition: transform 300ms ease, box-shadow 300ms ease;
+
+            /* Cursor e foco */
+            cursor: pointer;
+            outline: none;
+        }
     </style>
 </head>
 
@@ -176,17 +238,6 @@
 
     <!-- Canvas para Partículas de Brilho -->
     <canvas id="sparkle-canvas"></canvas>
-
-    <!-- Botão Flutuante do Áudio -->
-    <div id="audio-control"
-        class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center space-x-2 bg-white/90 backdrop-blur-md p-3 sm:p-3.5 rounded-full border border-gold-400/40 shadow-xl cursor-pointer hover:border-gold-500 transition transform hover:scale-105 active:scale-95">
-        <button id="music-btn" aria-label="Alternar Trilha Sonora"
-            class="text-gold-500 focus:outline-none flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7">
-            <i id="music-icon" class="fas fa-volume-mute text-base sm:text-lg"></i>
-        </button>
-        <span class="text-[10px] sm:text-xs font-cinzel text-gold-600 font-semibold tracking-wider pr-2 hidden sm:inline"
-            id="music-text">Música de Fundo</span>
-    </div>
 
     <!-- ENVELOPE / PORTAS 3D DE ABERTURA EM BRANCO & MARFIM -->
     <div id="gatefold-container"
@@ -196,65 +247,72 @@
 
         <!-- Porta Esquerda -->
         <div
-            class="gatefold-door-left absolute top-0 left-0 w-1/2 h-full border-r border-gold-400/40 flex flex-col justify-between p-4 sm:p-8 md:p-12 z-20 shadow-2xl">
-            <div class="opacity-50 w-10 sm:w-20 md:w-28">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="1.2" class="w-full h-auto">
+            class="gatefold-door-left absolute top-0 left-0 w-1/2 h-full border-r border-gold-400/40 flex flex-col justify-between z-20 shadow-2xl">
+            <!-- <div class="opacity-50 w-10 sm:w-20 md:w-28"> -->
+            <div class="borda-esquerda">
+                <!-- <svg viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="1.2" class="w-full h-auto">
                     <path d="M10,90 Q30,40 90,10 M20,70 Q40,50 60,40 M30,80 Q50,70 70,60" />
                     <circle cx="90" cy="10" r="3" fill="#D4AF37" />
-                </svg>
+                </svg> -->
+
+                <img src="borda-esquerda.svg" alt="Ícone de Coração" class="">
             </div>
 
             <!-- Nome Denilson alinhado na porta esquerda -->
-            <div class="text-right my-auto pr-2 sm:pr-6 md:pr-10">
-                <span class="font-cinzel text-gold-600 uppercase text-[8px] sm:text-xs tracking-[0.25em] block mb-1">Convite de</span>
+            <!-- <div class="text-right my-auto pr-2 sm:pr-6 md:pr-10">
+                <span
+                    class="font-cinzel text-gold-600 uppercase text-[8px] sm:text-xs tracking-[0.25em] block mb-1">Convite
+                    de</span>
                 <h2 class="font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-stone-800 tracking-wider">
                     DENILSON
                 </h2>
-            </div>
+            </div> -->
 
-            <div class="opacity-40 transform rotate-180 w-8 sm:w-16 md:w-24">
+            <!-- <div class="opacity-40 transform rotate-180 w-8 sm:w-16 md:w-24">
                 <svg viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="1.2" class="w-full h-auto">
                     <path d="M10,90 Q30,40 90,10 M20,70 Q40,50 60,40" />
                 </svg>
-            </div>
+            </div> -->
         </div>
 
         <!-- Porta Direita -->
         <div
-            class="gatefold-door-right absolute top-0 right-0 w-1/2 h-full border-l border-gold-400/40 flex flex-col justify-between p-4 sm:p-8 md:p-12 z-20 shadow-2xl">
-            <div class="self-end opacity-50 transform rotate-90 w-10 sm:w-20 md:w-28">
+            class="gatefold-door-right absolute top-0 right-0 w-1/2 h-full border-l border-gold-400/40 flex flex-col justify-between z-20 shadow-2xl">
+            <!-- <div class="self-end opacity-50 transform rotate-90 w-10 sm:w-20 md:w-28">
                 <svg viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="1.2" class="w-full h-auto">
                     <path d="M10,90 Q30,40 90,10 M20,70 Q40,50 60,40 M30,80 Q50,70 70,60" />
                     <circle cx="90" cy="10" r="3" fill="#D4AF37" />
                 </svg>
-            </div>
+            </div> -->
 
             <!-- Nome Cristiane alinhado na porta direita -->
-            <div class="text-left my-auto pl-2 sm:pl-6 md:pl-10">
+            <!-- <div class="text-left my-auto pl-2 sm:pl-6 md:pl-10">
                 <span class="font-cursive text-gold-500 text-lg sm:text-3xl md:text-5xl block -mb-1 italic">&</span>
                 <h2 class="font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-stone-800 tracking-wider">
                     CRISTIANE
                 </h2>
-            </div>
+            </div> -->
 
-            <div class="self-end opacity-40 transform -rotate-90 w-8 sm:w-16 md:w-24">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="1.2" class="w-full h-auto">
-                    <path d="M10,90 Q30,40 90,10" />
-                </svg>
+            <div class="self-end transform  borda-direita">
+                <img src="borda-direita.svg" alt="Ícone de Coração" class="">
             </div>
         </div>
 
         <!-- Selo de Cera Dourado / Botão de Abertura -->
         <div class="absolute z-30 flex flex-col items-center justify-center pointer-events-auto">
-            <button id="open-doors-btn"
-                class="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-gold-100 via-gold-400 to-gold-600 p-0.5 sm:p-1 shadow-2xl hover:scale-105 active:scale-95 transition duration-300 group focus:outline-none cursor-pointer gold-border-glow">
-                <div
+            <button id="open-doors-btn" class="selo-nome">
+                <!-- <div
                     class="w-full h-full rounded-full bg-white flex flex-col items-center justify-center border border-gold-400/60 group-hover:bg-softIvory transition duration-300">
-                    <span class="font-cinzel text-xs sm:text-xl md:text-2xl font-bold text-gold-600 tracking-tighter">D & C</span>
-                    <span class="text-[7px] sm:text-[9px] font-cinzel tracking-[0.2em] sm:tracking-[0.25em] text-gold-500 uppercase mt-0.5">ABRIR</span>
-                </div>
+                    <span class="font-cinzel text-xs sm:text-xl md:text-2xl font-bold text-gold-600 tracking-tighter">D
+                        & C</span>
+                    <span
+                        class="text-[7px] sm:text-[9px] font-cinzel tracking-[0.2em] sm:tracking-[0.25em] text-gold-500 uppercase mt-0.5">ABRIR</span>
+                </div> -->
+
+                <img src="logo.svg" alt="Selo de Cera Dourado" class="w-full h-full rounded-full">
             </button>
-            <p class="text-[9px] sm:text-xs font-cinzel text-stone-600 font-semibold tracking-widest uppercase mt-3 animate-pulse text-center">
+            <p
+                class="text-[9px] sm:text-xs font-cinzel text-stone-600 font-semibold tracking-widest uppercase mt-3 animate-pulse text-center">
                 Toque para deslacrar
             </p>
         </div>
@@ -268,7 +326,8 @@
             class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gold-400/30 py-3 sm:py-4 px-4 sm:px-6 transition shadow-sm">
             <div class="max-w-6xl mx-auto flex justify-between items-center">
                 <a href="#hero" class="font-cinzel text-lg sm:text-xl font-bold text-gold-600 tracking-widest">D & C</a>
-                <div class="flex space-x-6 sm:space-x-8 text-xs font-cinzel font-semibold tracking-[0.2em] text-stone-600 uppercase hidden md:flex">
+                <div
+                    class="flex space-x-6 sm:space-x-8 text-xs font-cinzel font-semibold tracking-[0.2em] text-stone-600 uppercase hidden md:flex">
                     <a href="#hero" class="hover:text-gold-500 transition">Início</a>
                     <a href="#evento" class="hover:text-gold-500 transition">O Evento</a>
                     <a href="#presente" class="hover:text-gold-500 transition">Presente</a>
@@ -375,10 +434,13 @@
                             <div>
                                 <div class="flex items-center gap-2 mb-3 text-gold-600">
                                     <i class="fas fa-church text-lg"></i>
-                                    <h4 class="font-cinzel text-lg font-semibold text-stone-800">Cerimônia Religiosa</h4>
+                                    <h4 class="font-cinzel text-lg font-semibold text-stone-800">Cerimônia Religiosa
+                                    </h4>
                                 </div>
-                                <p class="text-xs font-cinzel text-gold-600 uppercase font-semibold tracking-widest mb-2"><i
-                                        class="far fa-clock mr-1"></i> Às 19:00 Horas</p>
+                                <p
+                                    class="text-xs font-cinzel text-gold-600 uppercase font-semibold tracking-widest mb-2">
+                                    <i class="far fa-clock mr-1"></i> Às 19:00 Horas
+                                </p>
                                 <p class="text-stone-600 text-xs sm:text-sm mb-1"><strong>Local:</strong> Igreja Santa
                                     Terezinha do Menino Jesus</p>
                             </div>
@@ -399,8 +461,10 @@
                                     <i class="fas fa-glass-cheers text-lg"></i>
                                     <h4 class="font-cinzel text-lg font-semibold text-stone-800">Recepção & Festa</h4>
                                 </div>
-                                <p class="text-xs font-cinzel text-gold-600 uppercase font-semibold tracking-widest mb-2"><i
-                                        class="far fa-clock mr-1"></i> Logo após a cerimônia</p>
+                                <p
+                                    class="text-xs font-cinzel text-gold-600 uppercase font-semibold tracking-widest mb-2">
+                                    <i class="far fa-clock mr-1"></i> Logo após a cerimônia
+                                </p>
                                 <p class="text-stone-600 text-xs sm:text-sm mb-1"><strong>Local:</strong> Na Flapinheiro
                                 </p>
                                 <p class="text-stone-500 text-xs"><i class="fas fa-location-dot mr-1"></i> Rua: Luís
@@ -430,7 +494,8 @@
                 <div
                     class="mt-8 sm:mt-12 bg-white/80 rounded-2xl p-6 sm:p-8 border border-gold-400/30 text-center reveal shadow-sm">
                     <i class="fas fa-user-tie text-gold-500 text-xl sm:text-2xl mb-2 sm:mb-3"></i>
-                    <h4 class="font-cinzel text-xl sm:text-2xl font-semibold text-stone-800 mb-2">Traje: Passeio Completo
+                    <h4 class="font-cinzel text-xl sm:text-2xl font-semibold text-stone-800 mb-2">Traje: Passeio
+                        Completo
                         / Social</h4>
                     <p class="text-stone-600 text-xs font-normal leading-relaxed max-w-lg mx-auto">
                         Sugerimos trajes sociais elegantes para os nossos convidados. Pedimos carinhosamente a gentileza
@@ -503,7 +568,8 @@
         <footer class="bg-white py-10 sm:py-12 text-center text-xs font-cinzel border-t border-gold-400/20">
             <div class="max-w-4xl mx-auto px-4 space-y-3">
                 <h3 class="font-cursive text-3xl sm:text-4xl text-gold-500">Denilson & Cristiane</h3>
-                <p class="tracking-[0.2em] sm:tracking-[0.25em] text-stone-500 font-semibold uppercase text-[10px] sm:text-xs">
+                <p
+                    class="tracking-[0.2em] sm:tracking-[0.25em] text-stone-500 font-semibold uppercase text-[10px] sm:text-xs">
                     • 19.12.2026 •</p>
                 <p class="text-stone-400 font-sans text-[10px] pt-2 sm:pt-4">Desenvolvido com carinho para o nosso
                     casamento</p>
