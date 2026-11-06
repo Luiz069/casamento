@@ -482,6 +482,38 @@
 .qr-pix:hover {
     transform: scale(1.05);
 }
+
+        .confirmacao-presenca {
+    margin-top: 35px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.confirmacao-presenca p {
+    margin-bottom: 18px;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+}
+
+.botao-confirmar {
+    display: inline-block;
+    padding: 13px 28px;
+    border: 1px solid #ab3d57;
+    border-radius: 30px;
+    background: #ab3d57;
+    color: #ffffff;
+    font-family: "Cinzel", serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.botao-confirmar:hover {
+    background: #ffffff;
+    color: #ab3d57;
+    transform: translateY(-2px);
+}
     </style>
 </head>
 
@@ -584,6 +616,19 @@
                 <p class="presente-text-link">QR Code do pix ou você pode ver a lista de <br /> presentes que fizemos. <a href="/presente.html">(Clique aqui)</a> </p>
 
             </section>
+
+            <section class="confirmacao-presenca">
+    <p>Esperamos você para celebrar esse momento especial!</p>
+
+    <a
+        href="#"
+        id="botao-confirmar"
+        class="botao-confirmar"
+        onclick="confirmarPresenca(event)"
+    >
+        CONFIRMAR PRESENÇA
+    </a>
+            </section>
         </div>
     </main>
 
@@ -674,6 +719,19 @@
     } catch (error) {
         alert("Não foi possível copiar a chave Pix.");
     }
+        }
+
+        function confirmarPresenca(event) {
+    event.preventDefault();
+
+    const numeroWhatsApp = "5598984450443";
+
+    const mensagem =
+        "Olá! Gostaria de confirmar minha presença no casamento de Denílson e Cristiane, no dia 19 de dezembro de 2026. ❤️";
+
+    const link = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(link, "_blank");
         }
     </script>
 </body>
