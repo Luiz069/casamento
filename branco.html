@@ -1,23 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Denilson & Cristiane - Convite de Casamento</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500;600&family=Alex+Brush&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" />
 
     <!-- FontAwesome & Canvas Confetti -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
@@ -26,34 +26,34 @@
                 extend: {
                     colors: {
                         gold: {
-                            100: '#FFF6D6',
-                            300: '#E6C687',
-                            400: '#D4AF37',
-                            500: '#AA8828',
-                            600: '#85681A',
-                            700: '#5E4910'
+                            100: "#FFF6D6",
+                            300: "#E6C687",
+                            400: "#D4AF37",
+                            500: "#AA8828",
+                            600: "#85681A",
+                            700: "#5E4910",
                         },
-                        pureWhite: '#FFFFFF',
-                        softIvory: '#FAF8F5',
-                        warmPearl: '#F4EFEA',
-                        cardWhite: '#FFFFFF'
+                        pureWhite: "#FFFFFF",
+                        softIvory: "#FAF8F5",
+                        warmPearl: "#F4EFEA",
+                        cardWhite: "#FFFFFF",
                     },
                     fontFamily: {
-                        cinzel: ['"Cinzel"', 'serif'],
-                        sans: ['"Montserrat"', 'sans-serif'],
-                        cursive: ['"Alex Brush"', 'cursive']
-                    }
-                }
-            }
-        }
+                        cinzel: ['"Cinzel"', "serif"],
+                        sans: ['"Montserrat"', "sans-serif"],
+                        cursive: ['"Alex Brush"', "cursive"],
+                    },
+                },
+            },
+        };
     </script>
 
     <style>
         /* Estilos Customizados & Mecanismos 3D na Cor Branca/Marfim */
         body {
-            background-color: #FAF8F5;
-            color: #2D2A26;
-            font-family: 'Montserrat', sans-serif;
+            background-color: #faf8f5;
+            color: #2d2a26;
+            font-family: "Montserrat", sans-serif;
             overflow-x: hidden;
             width: 100vw;
         }
@@ -81,9 +81,14 @@
 
         .gatefold-door-left,
         .gatefold-door-right {
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease 0.4s;
+            transition:
+                transform 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+                opacity 0.8s ease 0.4s;
             transform-style: preserve-3d;
-            background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 50%, #F4EFEA 100%);
+            background: linear-gradient(135deg,
+                    #ffffff 0%,
+                    #faf8f5 50%,
+                    #f4efea 100%);
         }
 
         .gatefold-door-left {
@@ -115,11 +120,17 @@
 
         /* Brilho Dourado */
         .gold-border-glow {
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25), inset 0 0 15px rgba(212, 175, 55, 0.15);
+            box-shadow:
+                0 10px 30px rgba(212, 175, 55, 0.25),
+                inset 0 0 15px rgba(212, 175, 55, 0.15);
         }
 
         .gold-gradient-text {
-            background: linear-gradient(135deg, #AA8828 0%, #D4AF37 40%, #85681A 70%, #AA8828 100%);
+            background: linear-gradient(135deg,
+                    #aa8828 0%,
+                    #d4af37 40%,
+                    #85681a 70%,
+                    #aa8828 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% auto;
@@ -163,7 +174,9 @@
 
             .gatefold-door-left,
             .gatefold-door-right {
-                transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease 0.4s;
+                transition:
+                    transform 1.5s cubic-bezier(0.77, 0, 0.175, 1),
+                    opacity 0.8s ease 0.4s;
             }
 
             .my-auto {
@@ -225,91 +238,61 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
             /* Transição suave (transition duration-300) */
-            transition: transform 300ms ease, box-shadow 300ms ease;
+            transition:
+                transform 300ms ease,
+                box-shadow 300ms ease;
 
             /* Cursor e foco */
             cursor: pointer;
+            outline: none;
+        }
+
+        /* Efeito Hover (hover:scale-105) */
+        .selo-nome:hover {
+            transform: scale(1.05);
+        }
+
+        /* Efeito Active / Clique (active:scale-95) */
+        .selo-nome:active {
+            transform: scale(0.95);
+        }
+
+        /* Foco */
+        .selo-nome:focus {
             outline: none;
         }
     </style>
 </head>
 
 <body class="relative selection:bg-gold-400 selection:text-white overflow-x-hidden">
-
     <!-- Canvas para Partículas de Brilho -->
     <canvas id="sparkle-canvas"></canvas>
 
     <!-- ENVELOPE / PORTAS 3D DE ABERTURA EM BRANCO & MARFIM -->
     <div id="gatefold-container"
         class="gatefold-wrapper fixed inset-0 z-50 flex items-center justify-center bg-stone-900/40 backdrop-blur-sm overflow-hidden">
-        <div class="gatefold-overlay absolute inset-0 bg-stone-900/30 transition-opacity duration-700">
-        </div>
+        <div class="gatefold-overlay absolute inset-0 bg-stone-900/30 transition-opacity duration-700"></div>
 
         <!-- Porta Esquerda -->
         <div
             class="gatefold-door-left absolute top-0 left-0 w-1/2 h-full border-r border-gold-400/40 flex flex-col justify-between z-20 shadow-2xl">
-            <!-- <div class="opacity-50 w-10 sm:w-20 md:w-28"> -->
             <div class="borda-esquerda">
-                <!-- <svg viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="1.2" class="w-full h-auto">
-                    <path d="M10,90 Q30,40 90,10 M20,70 Q40,50 60,40 M30,80 Q50,70 70,60" />
-                    <circle cx="90" cy="10" r="3" fill="#D4AF37" />
-                </svg> -->
-
-                <img src="borda-esquerda.svg" alt="Ícone de Coração" class="">
+                <img src="borda-esquerda.svg" alt="Ícone de Coração" class="" />
             </div>
-
-            <!-- Nome Denilson alinhado na porta esquerda -->
-            <!-- <div class="text-right my-auto pr-2 sm:pr-6 md:pr-10">
-                <span
-                    class="font-cinzel text-gold-600 uppercase text-[8px] sm:text-xs tracking-[0.25em] block mb-1">Convite
-                    de</span>
-                <h2 class="font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-stone-800 tracking-wider">
-                    DENILSON
-                </h2>
-            </div> -->
-
-            <!-- <div class="opacity-40 transform rotate-180 w-8 sm:w-16 md:w-24">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="1.2" class="w-full h-auto">
-                    <path d="M10,90 Q30,40 90,10 M20,70 Q40,50 60,40" />
-                </svg>
-            </div> -->
         </div>
 
         <!-- Porta Direita -->
         <div
             class="gatefold-door-right absolute top-0 right-0 w-1/2 h-full border-l border-gold-400/40 flex flex-col justify-between z-20 shadow-2xl">
-            <!-- <div class="self-end opacity-50 transform rotate-90 w-10 sm:w-20 md:w-28">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#D4AF37" stroke-width="1.2" class="w-full h-auto">
-                    <path d="M10,90 Q30,40 90,10 M20,70 Q40,50 60,40 M30,80 Q50,70 70,60" />
-                    <circle cx="90" cy="10" r="3" fill="#D4AF37" />
-                </svg>
-            </div> -->
-
-            <!-- Nome Cristiane alinhado na porta direita -->
-            <!-- <div class="text-left my-auto pl-2 sm:pl-6 md:pl-10">
-                <span class="font-cursive text-gold-500 text-lg sm:text-3xl md:text-5xl block -mb-1 italic">&</span>
-                <h2 class="font-cinzel text-sm sm:text-3xl md:text-5xl font-semibold text-stone-800 tracking-wider">
-                    CRISTIANE
-                </h2>
-            </div> -->
-
-            <div class="self-end transform  borda-direita">
-                <img src="borda-direita.svg" alt="Ícone de Coração" class="">
+            <div class="self-end transform borda-direita">
+                <img src="borda-direita.svg" alt="Ícone de Coração" class="" />
             </div>
         </div>
 
         <!-- Selo de Cera Dourado / Botão de Abertura -->
         <div class="absolute z-30 flex flex-col items-center justify-center pointer-events-auto">
             <button id="open-doors-btn" class="selo-nome">
-                <!-- <div
-                    class="w-full h-full rounded-full bg-white flex flex-col items-center justify-center border border-gold-400/60 group-hover:bg-softIvory transition duration-300">
-                    <span class="font-cinzel text-xs sm:text-xl md:text-2xl font-bold text-gold-600 tracking-tighter">D
-                        & C</span>
-                    <span
-                        class="text-[7px] sm:text-[9px] font-cinzel tracking-[0.2em] sm:tracking-[0.25em] text-gold-500 uppercase mt-0.5">ABRIR</span>
-                </div> -->
-
-                <img src="logo.svg" alt="Selo de Cera Dourado" class="w-full h-full rounded-full">
+                <img src="logo.svg" alt="Selo de Cera Dourado" class="w-full h-full rounded-full" />
             </button>
             <p
                 class="text-[9px] sm:text-xs font-cinzel text-stone-600 font-semibold tracking-widest uppercase mt-3 animate-pulse text-center">
@@ -320,7 +303,6 @@
 
     <!-- CONTEÚDO PRINCIPAL DO CONVITE -->
     <main id="main-content" class="relative opacity-0 transition-opacity duration-1000 bg-softIvory text-stone-800">
-
         <!-- NAVBAR -->
         <nav
             class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gold-400/30 py-3 sm:py-4 px-4 sm:px-6 transition shadow-sm">
@@ -338,7 +320,6 @@
         <!-- SEÇÃO HERO -->
         <section id="hero"
             class="relative min-h-[90vh] sm:min-h-[92vh] flex flex-col items-center justify-center text-center px-4 py-12 sm:py-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-softIvory to-warmPearl">
-
             <div class="max-w-4xl mx-auto reveal w-full">
                 <div class="flex items-center justify-center space-x-2 sm:space-x-4 mb-4 sm:mb-6">
                     <div class="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-transparent to-gold-400"></div>
@@ -393,7 +374,8 @@
                 <!-- BOTAO RSVP WHATSAPP -->
                 <button onclick="confirmViaWhatsApp()"
                     class="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white font-cinzel font-bold text-[10px] sm:text-xs uppercase px-6 sm:px-10 py-3.5 sm:py-4 rounded-full shadow-xl hover:brightness-105 active:scale-95 transition transform tracking-[0.15em] sm:tracking-[0.2em] border border-gold-300">
-                    <i class="fab fa-whatsapp text-base sm:text-lg text-white"></i> CONFIRMAR PRESENÇA VIA WHATSAPP
+                    <i class="fab fa-whatsapp text-base sm:text-lg text-white"></i>
+                    CONFIRMAR PRESENÇA VIA WHATSAPP
                 </button>
             </div>
         </section>
@@ -405,7 +387,9 @@
                     <span
                         class="font-cinzel text-gold-600 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] font-semibold uppercase block mb-1 sm:mb-2">Programação
                         Completa</span>
-                    <h2 class="font-cinzel text-3xl sm:text-5xl text-stone-800 font-semibold">O Grande Dia</h2>
+                    <h2 class="font-cinzel text-3xl sm:text-5xl text-stone-800 font-semibold">
+                        O Grande Dia
+                    </h2>
                     <div
                         class="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mt-3 sm:mt-4">
                     </div>
@@ -419,30 +403,34 @@
                             class="w-14 h-14 sm:w-18 sm:h-18 bg-gold-400/10 text-gold-500 border border-gold-400/40 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-xl sm:text-2xl">
                             <i class="fas fa-glass-cheers"></i>
                         </div>
-                        <h3 class="font-cinzel text-2xl sm:text-4xl text-stone-800 font-semibold mb-2">Cerimônia &
-                            Recepção</h3>
+                        <h3 class="font-cinzel text-2xl sm:text-4xl text-stone-800 font-semibold mb-2">
+                            Cerimônia & Recepção
+                        </h3>
                         <p
                             class="font-cinzel text-gold-600 font-semibold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] uppercase">
-                            19 DE DEZEMBRO DE 2026</p>
+                            19 DE DEZEMBRO DE 2026
+                        </p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-6 border-t border-gold-400/20">
-
                         <!-- Cerimônia -->
                         <div
                             class="bg-softIvory p-5 sm:p-6 rounded-xl border border-gold-400/20 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-center gap-2 mb-3 text-gold-600">
                                     <i class="fas fa-church text-lg"></i>
-                                    <h4 class="font-cinzel text-lg font-semibold text-stone-800">Cerimônia Religiosa
+                                    <h4 class="font-cinzel text-lg font-semibold text-stone-800">
+                                        Cerimônia Religiosa
                                     </h4>
                                 </div>
                                 <p
                                     class="text-xs font-cinzel text-gold-600 uppercase font-semibold tracking-widest mb-2">
                                     <i class="far fa-clock mr-1"></i> Às 19:00 Horas
                                 </p>
-                                <p class="text-stone-600 text-xs sm:text-sm mb-1"><strong>Local:</strong> Igreja Santa
-                                    Terezinha do Menino Jesus</p>
+                                <p class="text-stone-600 text-xs sm:text-sm mb-1">
+                                    <strong>Local:</strong> Igreja Santa Terezinha do Menino
+                                    Jesus
+                                </p>
                             </div>
                             <div class="mt-4 pt-3 border-t border-gold-400/20">
                                 <a href="https://maps.google.com/?q=Igreja+Santa+Terezinha+do+Menino+Jesus"
@@ -459,16 +447,20 @@
                             <div>
                                 <div class="flex items-center gap-2 mb-3 text-gold-600">
                                     <i class="fas fa-glass-cheers text-lg"></i>
-                                    <h4 class="font-cinzel text-lg font-semibold text-stone-800">Recepção & Festa</h4>
+                                    <h4 class="font-cinzel text-lg font-semibold text-stone-800">
+                                        Recepção & Festa
+                                    </h4>
                                 </div>
                                 <p
                                     class="text-xs font-cinzel text-gold-600 uppercase font-semibold tracking-widest mb-2">
                                     <i class="far fa-clock mr-1"></i> Logo após a cerimônia
                                 </p>
-                                <p class="text-stone-600 text-xs sm:text-sm mb-1"><strong>Local:</strong> Na Flapinheiro
+                                <p class="text-stone-600 text-xs sm:text-sm mb-1">
+                                    <strong>Local:</strong> Na Flapinheiro
                                 </p>
-                                <p class="text-stone-500 text-xs"><i class="fas fa-location-dot mr-1"></i> Rua: Luís
-                                    Domingues</p>
+                                <p class="text-stone-500 text-xs">
+                                    <i class="fas fa-location-dot mr-1"></i> Rua: Luís Domingues
+                                </p>
                             </div>
                             <div class="mt-4 pt-3 border-t border-gold-400/20">
                                 <a href="https://maps.google.com/?q=Na+Flapinheiro+rua+luis+domingues" target="_blank"
@@ -477,15 +469,19 @@
                                 </a>
                             </div>
                         </div>
-
                     </div>
 
                     <!-- Salvar no Calendário -->
                     <div class="mt-8 pt-6 border-t border-gold-400/20 text-center">
-                        <button
-                            onclick="addToCalendar('Casamento Denilson & Cristiane', 'Igreja Santa Terezinha do Menino Jesus / Na Flapinheiro', '2026-12-19T19:00:00')"
-                            class="w-full sm:w-auto bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 hover:brightness-105 active:scale-95 text-white font-cinzel font-bold text-xs py-3.5 px-8 rounded-full transition inline-flex items-center justify-center gap-2 shadow-md tracking-wider">
-                            <i class="far fa-calendar-plus text-sm"></i> Salvar Data no Google Agenda
+                        <button onclick="
+                  addToCalendar(
+                    'Casamento Denilson & Cristiane',
+                    'Igreja Santa Terezinha do Menino Jesus / Na Flapinheiro',
+                    '2026-12-19T19:00:00',
+                  )
+                " class="w-full sm:w-auto bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 hover:brightness-105 active:scale-95 text-white font-cinzel font-bold text-xs py-3.5 px-8 rounded-full transition inline-flex items-center justify-center gap-2 shadow-md tracking-wider">
+                            <i class="far fa-calendar-plus text-sm"></i> Salvar Data no
+                            Google Agenda
                         </button>
                     </div>
                 </div>
@@ -494,12 +490,13 @@
                 <div
                     class="mt-8 sm:mt-12 bg-white/80 rounded-2xl p-6 sm:p-8 border border-gold-400/30 text-center reveal shadow-sm">
                     <i class="fas fa-user-tie text-gold-500 text-xl sm:text-2xl mb-2 sm:mb-3"></i>
-                    <h4 class="font-cinzel text-xl sm:text-2xl font-semibold text-stone-800 mb-2">Traje: Passeio
-                        Completo
-                        / Social</h4>
+                    <h4 class="font-cinzel text-xl sm:text-2xl font-semibold text-stone-800 mb-2">
+                        Traje: Passeio Completo / Social
+                    </h4>
                     <p class="text-stone-600 text-xs font-normal leading-relaxed max-w-lg mx-auto">
-                        Sugerimos trajes sociais elegantes para os nossos convidados. Pedimos carinhosamente a gentileza
-                        de evitar tons brancos ou pérola.
+                        Sugerimos trajes sociais elegantes para os nossos convidados.
+                        Pedimos carinhosamente a gentileza de evitar tons brancos ou
+                        pérola.
                     </p>
                 </div>
             </div>
@@ -511,10 +508,13 @@
                 <span
                     class="font-cinzel text-gold-600 text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] font-semibold uppercase block mb-1 sm:mb-2">Mimo
                     aos Noivos</span>
-                <h2 class="font-cinzel text-3xl sm:text-5xl text-stone-800 font-semibold">Presente</h2>
+                <h2 class="font-cinzel text-3xl sm:text-5xl text-stone-800 font-semibold">
+                    Presente
+                </h2>
                 <p class="text-stone-600 text-xs sm:text-sm font-normal max-w-lg mx-auto mt-2 sm:mt-3">
-                    Sua presença é o nosso maior presente! Se desejar nos abençoar com uma contribuição para a nossa
-                    nova fase, disponibilizamos nossa chave PIX abaixo:
+                    Sua presença é o nosso maior presente! Se desejar nos abençoar com
+                    uma contribuição para a nossa nova fase, disponibilizamos nossa
+                    chave PIX abaixo:
                 </p>
                 <div
                     class="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mt-3 sm:mt-4">
@@ -529,9 +529,13 @@
                     <i class="fas fa-qrcode"></i>
                 </div>
 
-                <h3 class="font-cinzel text-xl sm:text-2xl text-stone-800 font-bold mb-2">Chave PIX dos Noivos</h3>
-                <p class="text-xs text-stone-600 font-normal mb-6">Escaneie o QR Code abaixo ou copie a chave PIX para
-                    realizar sua contribuição.</p>
+                <h3 class="font-cinzel text-xl sm:text-2xl text-stone-800 font-bold mb-2">
+                    Chave PIX dos Noivos
+                </h3>
+                <p class="text-xs text-stone-600 font-normal mb-6">
+                    Escaneie o QR Code abaixo ou copie a chave PIX para realizar sua
+                    contribuição.
+                </p>
 
                 <div
                     class="bg-softIvory p-4 sm:p-6 rounded-2xl border border-gold-400/30 mb-6 flex flex-col items-center">
@@ -567,31 +571,34 @@
         <!-- RODAPÉ -->
         <footer class="bg-white py-10 sm:py-12 text-center text-xs font-cinzel border-t border-gold-400/20">
             <div class="max-w-4xl mx-auto px-4 space-y-3">
-                <h3 class="font-cursive text-3xl sm:text-4xl text-gold-500">Denilson & Cristiane</h3>
+                <h3 class="font-cursive text-3xl sm:text-4xl text-gold-500">
+                    Denilson & Cristiane
+                </h3>
                 <p
                     class="tracking-[0.2em] sm:tracking-[0.25em] text-stone-500 font-semibold uppercase text-[10px] sm:text-xs">
-                    • 19.12.2026 •</p>
-                <p class="text-stone-400 font-sans text-[10px] pt-2 sm:pt-4">Desenvolvido com carinho para o nosso
-                    casamento</p>
+                    • 19.12.2026 •
+                </p>
+                <p class="text-stone-400 font-sans text-[10px] pt-2 sm:pt-4">
+                    Desenvolvido com carinho para o nosso casamento
+                </p>
             </div>
         </footer>
-
     </main>
 
     <!-- SCRIPTS DE LÓGICA E INTERAÇÃO -->
     <script>
         /* --- 1. ABERTURA DAS PORTAS 3D --- */
-        const gatefoldContainer = document.getElementById('gatefold-container');
-        const openBtn = document.getElementById('open-doors-btn');
-        const mainContent = document.getElementById('main-content');
+        const gatefoldContainer = document.getElementById("gatefold-container");
+        const openBtn = document.getElementById("open-doors-btn");
+        const mainContent = document.getElementById("main-content");
 
-        openBtn.addEventListener('click', () => {
-            gatefoldContainer.classList.add('gatefold-open');
+        openBtn.addEventListener("click", () => {
+            gatefoldContainer.classList.add("gatefold-open");
             playAmbientSound();
 
             setTimeout(() => {
-                gatefoldContainer.style.display = 'none';
-                mainContent.classList.remove('opacity-0');
+                gatefoldContainer.style.display = "none";
+                mainContent.classList.remove("opacity-0");
                 initSparkleParticles();
                 triggerConfetti();
             }, 1200);
@@ -600,18 +607,22 @@
         /* --- 2. REDIRECIONAMENTO RSVP WHATSAPP --- */
         function confirmViaWhatsApp() {
             const phoneNumber = "5511999999999";
-            const message = encodeURIComponent("Olá Denilson e Cristiane! Gostaria de confirmar minha presença no casamento de vocês no dia 19/12/2026! ✨");
-            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+            const message = encodeURIComponent(
+                "Olá Denilson e Cristiane! Gostaria de confirmar minha presença no casamento de vocês no dia 19/12/2026! ✨",
+            );
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
         }
 
         /* --- 3. ANIMAÇÃO DE BRILHOS / PARTÍCULAS --- */
-        let canvas, ctx, particles = [];
+        let canvas,
+            ctx,
+            particles = [];
         function initSparkleParticles() {
-            canvas = document.getElementById('sparkle-canvas');
-            ctx = canvas.getContext('2d');
+            canvas = document.getElementById("sparkle-canvas");
+            ctx = canvas.getContext("2d");
 
             resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
+            window.addEventListener("resize", resizeCanvas);
 
             const count = window.innerWidth < 640 ? 25 : 40;
             particles = [];
@@ -620,10 +631,10 @@
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
                     radius: Math.random() * 1.5 + 0.5,
-                    color: '#D4AF37',
+                    color: "#D4AF37",
                     alpha: Math.random() * 0.6 + 0.2,
                     speedY: -(Math.random() * 0.4 + 0.1),
-                    speedX: Math.random() * 0.4 - 0.2
+                    speedX: Math.random() * 0.4 - 0.2,
                 });
             }
 
@@ -640,7 +651,7 @@
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            particles.forEach(p => {
+            particles.forEach((p) => {
                 p.y += p.speedY;
                 p.x += p.speedX;
 
@@ -655,7 +666,7 @@
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                 ctx.fillStyle = p.color;
                 ctx.shadowBlur = 6;
-                ctx.shadowColor = '#D4AF37';
+                ctx.shadowColor = "#D4AF37";
                 ctx.fill();
                 ctx.restore();
             });
@@ -664,7 +675,7 @@
         }
 
         /* --- 4. CONTAGEM REGRESSIVA --- */
-        const weddingDate = new Date('2026-12-19T19:00:00').getTime();
+        const weddingDate = new Date("2026-12-19T19:00:00").getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
@@ -672,14 +683,25 @@
 
             if (diff > 0) {
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const hours = Math.floor(
+                    (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+                );
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
-                document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
-                document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
-                document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+                document.getElementById("cd-days").innerText = String(days).padStart(
+                    2,
+                    "0",
+                );
+                document.getElementById("cd-hours").innerText = String(
+                    hours,
+                ).padStart(2, "0");
+                document.getElementById("cd-minutes").innerText = String(
+                    minutes,
+                ).padStart(2, "0");
+                document.getElementById("cd-seconds").innerText = String(
+                    seconds,
+                ).padStart(2, "0");
             }
         }
         setInterval(updateCountdown, 1000);
@@ -687,17 +709,17 @@
 
         /* --- 5. REVEAL AO ROLAR --- */
         function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal');
+            const reveals = document.querySelectorAll(".reveal");
             const windowHeight = window.innerHeight;
 
-            reveals.forEach(el => {
+            reveals.forEach((el) => {
                 const top = el.getBoundingClientRect().top;
                 if (top < windowHeight - 60) {
-                    el.classList.add('active');
+                    el.classList.add("active");
                 }
             });
         }
-        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener("scroll", revealOnScroll);
         revealOnScroll();
 
         /* --- 6. ÁUDIO DE FUNDO (WEB AUDIO API) --- */
@@ -713,7 +735,7 @@
                 isPlaying = true;
                 updateAudioUI(true);
 
-                const chord = [220.00, 277.18, 329.63, 440.00, 554.37];
+                const chord = [220.0, 277.18, 329.63, 440.0, 554.37];
                 let noteIdx = 0;
 
                 audioInterval = setInterval(() => {
@@ -721,12 +743,15 @@
                     const osc = audioCtx.createOscillator();
                     const gain = audioCtx.createGain();
 
-                    osc.type = 'triangle';
+                    osc.type = "triangle";
                     osc.frequency.value = chord[noteIdx];
 
                     gain.gain.setValueAtTime(0, audioCtx.currentTime);
                     gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.4);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 3.0);
+                    gain.gain.exponentialRampToValueAtTime(
+                        0.0001,
+                        audioCtx.currentTime + 3.0,
+                    );
 
                     osc.connect(gain);
                     gain.connect(audioCtx.destination);
@@ -756,38 +781,43 @@
         }
 
         function updateAudioUI(playing) {
-            const icon = document.getElementById('music-icon');
-            const text = document.getElementById('music-text');
+            const icon = document.getElementById("music-icon");
+            const text = document.getElementById("music-text");
             if (playing) {
-                icon.className = 'fas fa-volume-up text-base sm:text-lg';
-                text.innerText = 'Tocando Trilha';
+                icon.className = "fas fa-volume-up text-base sm:text-lg";
+                text.innerText = "Tocando Trilha";
             } else {
-                icon.className = 'fas fa-volume-mute text-base sm:text-lg';
-                text.innerText = 'Trilha Pausada';
+                icon.className = "fas fa-volume-mute text-base sm:text-lg";
+                text.innerText = "Trilha Pausada";
             }
         }
 
-        document.getElementById('audio-control').addEventListener('click', toggleAudio);
+        document
+            .getElementById("audio-control")
+            .addEventListener("click", toggleAudio);
 
         /* --- 7. UTILITÁRIOS --- */
         function copyPixKey() {
-            const pixKey = document.getElementById('pix-key-text').innerText;
-            navigator.clipboard.writeText(pixKey).then(() => {
-                const toast = document.getElementById('copy-toast');
-                toast.classList.remove('hidden');
-                setTimeout(() => toast.classList.add('hidden'), 3000);
-            }).catch(() => {
-                const temp = document.createElement('input');
-                temp.value = pixKey;
-                document.body.appendChild(temp);
-                temp.select();
-                document.execCommand('copy');
-                document.body.removeChild(temp);
+            const pixKey = document.getElementById("pix-key-text").innerText;
+            navigator.clipboard
+                .writeText(pixKey)
+                .then(() => {
+                    const toast = document.getElementById("copy-toast");
+                    toast.classList.remove("hidden");
+                    setTimeout(() => toast.classList.add("hidden"), 3000);
+                })
+                .catch(() => {
+                    const temp = document.createElement("input");
+                    temp.value = pixKey;
+                    document.body.appendChild(temp);
+                    temp.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(temp);
 
-                const toast = document.getElementById('copy-toast');
-                toast.classList.remove('hidden');
-                setTimeout(() => toast.classList.add('hidden'), 3000);
-            });
+                    const toast = document.getElementById("copy-toast");
+                    toast.classList.remove("hidden");
+                    setTimeout(() => toast.classList.add("hidden"), 3000);
+                });
         }
 
         function triggerConfetti() {
@@ -795,13 +825,13 @@
                 particleCount: 40,
                 spread: 80,
                 origin: { y: 0.5 },
-                colors: ['#D4AF37', '#F3E5AB']
+                colors: ["#D4AF37", "#F3E5AB"],
             });
         }
 
         function addToCalendar(title, location, startDate) {
-            const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&location=${encodeURIComponent(location)}&dates=${startDate.replace(/[-:]/g, '')}/${startDate.replace(/[-:]/g, '')}`;
-            window.open(googleCalUrl, '_blank');
+            const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&location=${encodeURIComponent(location)}&dates=${startDate.replace(/[-:]/g, "")}/${startDate.replace(/[-:]/g, "")}`;
+            window.open(googleCalUrl, "_blank");
         }
     </script>
 </body>

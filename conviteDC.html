@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mayla & Kauan - Convite de Casamento</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500;600&family=Alex+Brush&display=swap"
+        rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: "#FFF6D6",
+                            300: "#E6C687",
+                            400: "#D4AF37",
+                            500: "#AA8828",
+                            600: "#85681A",
+                            700: "#5E4910",
+                        },
+                        pureWhite: "#FFFFFF",
+                        softIvory: "#FAF8F5",
+                        warmPearl: "#F4EFEA",
+                        cardWhite: "#FFFFFF",
+                    },
+                    fontFamily: {
+                        cinzel: ['"Cinzel"', "serif"],
+                        sans: ['"Montserrat"', "sans-serif"],
+                        cursive: ['"Alex Brush"', "cursive"],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        /* Estilos Customizados & Mecanismos 3D na Cor Branca/Marfim */
+        body {
+            background-color: #faf8f5;
+            color: #2d2a26;
+            font-family: "Montserrat", sans-serif;
+            overflow-x: hidden;
+            width: 100vw;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Partículas & Canvas */
+        #sparkle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        /* Envolvente das Portas 3D */
+        .gatefold-wrapper {
+            perspective: 1200px;
+        }
+
+        .gatefold-door-left,
+        .gatefold-door-right {
+            transition:
+                transform 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+                opacity 0.8s ease 0.4s;
+            transform-style: preserve-3d;
+            background: linear-gradient(135deg,
+                    #ffffff 0%,
+                    #faf8f5 50%,
+                    #f4efea 100%);
+        }
+
+        .gatefold-door-left {
+            transform-origin: left center;
+        }
+
+        .gatefold-door-right {
+            transform-origin: right center;
+        }
+
+        /* Animação de Abertura */
+        .gatefold-open .gatefold-door-left {
+            transform: rotateY(-110deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .gatefold-open .gatefold-door-right {
+            transform: rotateY(110deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .gatefold-open .gatefold-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease 0.6s;
+        }
+
+        /* Brilho Dourado */
+        .gold-border-glow {
+            box-shadow:
+                0 10px 30px rgba(212, 175, 55, 0.25),
+                inset 0 0 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg,
+                    #aa8828 0%,
+                    #d4af37 40%,
+                    #85681a 70%,
+                    #aa8828 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 8s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Animações de Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scrollbar Personalizada */
+        /* ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        } */
+
+        /* =============== */
+        @media (max-width: 640px) {
+
+            .gatefold-door-left,
+            .gatefold-door-right {
+                transition:
+                    transform 1.5s cubic-bezier(0.77, 0, 0.175, 1),
+                    opacity 0.8s ease 0.4s;
+            }
+
+            .my-auto {
+                margin: auto;
+            }
+
+            nav a {
+                margin: auto;
+            }
+        }
+
+        /* =============== */
+        .borda-esquerda {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+        }
+
+        .borda-esquerda img {
+            width: 60vw !important;
+            height: auto;
+        }
+
+        .borda-direita {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+        }
+
+        .borda-direita img {
+            width: 60vw !important;
+            height: auto;
+        }
+
+        .selo-nome {
+            /* Tamanhos responsivos (equivalente a w-20 h-20, sm:w-28, md:w-32) */
+            width: 6.8rem !important;
+            /* 80px */
+            height: 6.8rem !important;
+
+            border-radius: 9999px;
+            /* rounded-full */
+
+            /* Gradiente de fundo (bg-gradient-to-br from-gold-100 via-gold-400 to-gold-600) */
+            /* background-image: linear-gradient(to bottom right, var(--gold-100, #fef08a), var(--gold-400, #facc15), var(--gold-600, #ca8a04)); */
+            background: #f7f3ef;
+
+            /* Padding (p-0.5 sm:p-1) */
+            padding: 0.125rem;
+            /* 2px */
+
+            /* Sombra (shadow-2xl) */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+            /* Transição suave (transition duration-300) */
+            transition:
+                transform 300ms ease,
+                box-shadow 300ms ease;
+
+            /* Cursor e foco */
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Efeito Hover (hover:scale-105) */
+        .selo-nome:hover {
+            transform: scale(1.05);
+        }
+
+        /* Efeito Active / Clique (active:scale-95) */
+        .selo-nome:active {
+            transform: scale(0.95);
+        }
+
+        /* Foco */
+        .selo-nome:focus {
+            outline: none;
+        }
+
+        /* ===== CONVITE MAYLA & KAUAN ===== */
+        .convite-main {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            color: #171313;
+            font-family: "Cinzel", Georgia, serif;
+            text-align: center;
+        }
+
+        .flor-canto {
+            position: absolute;
+            z-index: 0;
+            width: min(42vw, 430px);
+            height: auto;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .flor-superior-esquerdo {
+            top: 0;
+            left: 0;
+        }
+
+        .flor-inferior-direito {
+            right: 0;
+            bottom: 0;
+        }
+
+        .convite-conteudo {
+            position: relative;
+            z-index: 1;
+            width: min(100% - 32px, 760px);
+            margin: 0 auto;
+            padding: clamp(115px, 14vh, 155px) 0 150px;
+        }
+
+        .convite-iniciais {
+            margin: 0;
+            color: #790b2e;
+            font-family: "Times New Roman", Georgia, serif;
+            font-size: clamp(64px, 10vw, 104px);
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: 0.02em;
+        }
+
+        .convite-iniciais span {
+            display: inline-block;
+            margin: 0 0.08em;
+            font-size: 0.42em;
+            vertical-align: middle;
+        }
+
+        .convite-versiculo {
+            margin: 42px auto 0;
+            font-size: clamp(11px, 1.35vw, 14px);
+            line-height: 1.45;
+            letter-spacing: 0.045em;
+        }
+
+        .convite-versiculo span {
+            display: inline-block;
+        }
+
+        .convite-familia {
+            margin-top: 80px;
+        }
+
+        .convite-legenda,
+        .convite-chamada {
+            margin: 0;
+            font-size: clamp(10px, 1.25vw, 13px);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .convite-pais {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+            font-size: clamp(11px, 1.35vw, 14px);
+            line-height: 1.45;
+            letter-spacing: 0.035em;
+        }
+
+        .convite-pais p {
+            margin: 0;
+        }
+
+        .convite-noivos {
+            margin-top: 24px;
+        }
+
+        .convite-noivos h1 {
+            margin: 0;
+            color: #850b36;
+            font-family: "Alex Brush", cursive;
+            font-size: clamp(48px, 7.5vw, 76px);
+            font-weight: 400;
+            line-height: 1.15;
+        }
+
+        .convite-chamada {
+            margin-top: 18px;
+        }
+
+        .convite-evento {
+            margin-top: 20px;
+        }
+
+        .convite-evento h2 {
+            margin: 0;
+            font-family: "Times New Roman", Georgia, serif;
+            font-size: clamp(19px, 2.2vw, 23px);
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .convite-dia {
+            margin: 2px 0 0;
+            font-family: "Times New Roman", Georgia, serif;
+            font-size: clamp(16px, 1.8vw, 19px);
+        }
+
+        .convite-local {
+            margin: 14px 0 0;
+            font-size: clamp(11px, 1.35vw, 14px);
+            line-height: 1.5;
+            letter-spacing: 0.055em;
+        }
+
+        .convite-recepcao {
+            margin: 20px 0 0;
+            font-size: clamp(11px, 1.35vw, 14px);
+            line-height: 1.5;
+            letter-spacing: 0.055em;
+        }
+
+        @media (max-width: 640px) {
+            .flor-canto {
+                width: min(48vw, 250px);
+            }
+
+            .convite-conteudo {
+                width: calc(100% - 28px);
+                padding-top: 105px;
+                padding-bottom: 125px;
+            }
+
+            .convite-versiculo {
+                margin-top: 30px;
+            }
+
+            .convite-familia {
+                margin-top: 58px;
+            }
+
+            .convite-pais {
+                gap: 12px;
+                font-size: 10px;
+            }
+
+            .convite-noivos {
+                margin-top: 28px;
+            }
+
+            .convite-evento {
+                margin-top: 22px;
+            }
+
+            .convite-recepcao br {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="relative selection:bg-gold-400 selection:text-white overflow-x-hidden">
+    <!-- Canvas para Partículas de Brilho -->
+    <canvas id="sparkle-canvas"></canvas>
+
+    <!-- ENVELOPE / PORTAS 3D DE ABERTURA EM BRANCO & MARFIM -->
+    <div id="gatefold-container"
+        class="gatefold-wrapper fixed inset-0 z-50 flex items-center justify-center bg-stone-900/40 backdrop-blur-sm overflow-hidden">
+        <div class="gatefold-overlay absolute inset-0 bg-stone-900/30 transition-opacity duration-700"></div>
+
+        <!-- Porta Esquerda -->
+        <div
+            class="gatefold-door-left absolute top-0 left-0 w-1/2 h-full border-r border-gold-400/40 flex flex-col justify-between z-20 shadow-2xl">
+            <div class="borda-esquerda">
+                <img src="borda-esquerda.svg" alt="Ícone de Coração" class="" />
+            </div>
+        </div>
+
+        <!-- Porta Direita -->
+        <div
+            class="gatefold-door-right absolute top-0 right-0 w-1/2 h-full border-l border-gold-400/40 flex flex-col justify-between z-20 shadow-2xl">
+            <div class="self-end transform borda-direita">
+                <img src="borda-direita.svg" alt="Ícone de Coração" class="" />
+            </div>
+        </div>
+
+        <!-- Selo de Cera Dourado / Botão de Abertura -->
+        <div class="absolute z-30 flex flex-col items-center justify-center pointer-events-auto">
+            <button id="open-doors-btn" class="selo-nome">
+                <img src="logo.svg" alt="Selo de Cera Dourado" class="w-full h-full rounded-full" />
+            </button>
+            <p
+                class="text-[9px] sm:text-xs font-cinzel text-stone-600 font-semibold tracking-widest uppercase mt-3 animate-pulse text-center">
+                Toque para deslacrar
+            </p>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL DO CONVITE -->
+    <main id="main-content" class="convite-main relative opacity-0 transition-opacity duration-1000">
+        <!-- Flores decorativas: troque os arquivos destas duas imagens no VS Code -->
+        <img class="flor-canto flor-superior-esquerdo" src="/borda-esquerda.svg" alt="" aria-hidden="true" />
+
+        <img class="flor-canto flor-inferior-direito" src="/borda-direita.svg" alt="" aria-hidden="true" />
+
+        <div class="convite-conteudo">
+            <header class="convite-cabecalho">
+                <!-- <p class="convite-iniciais">M<span>·</span>K</p> -->
+                <img src="logo.svg" alt="Logo do Casal" class="mx-auto w-32 h-32 sm:w-40 sm:h-40" />
+            </header>
+
+            <!-- <section class="convite-familia">
+                <p class="convite-legenda">Com a bênção de Deus e de seus pais</p>
+
+                <div class="convite-pais">
+                    <p>Eliandra dos Santos<br />Aldo Lemos</p>
+                    <p>Maria Madalena Duque<br />Edson Duque</p>
+                </div>
+            </section> -->
+
+            <section class="convite-noivos">
+                <h1>Denilson e Cristiane</h1>
+                <p class="convite-chamada">
+                    Convidam para a cerimônia de seu casamento
+                </p>
+            </section>
+
+            <section class="convite-evento">
+                <h2>19 de Dezembro de 2026</h2>
+                <p class="convite-dia">Sábado, às 19h00.</p>
+
+                <p class="convite-local">
+                    A realizar-se na Igreja Santa Terezinha do Menino Jesus<br />
+                    Rua Floriano Peixoto, Bairro Antigo Matadouro.
+                </p>
+
+                <p class="convite-recepcao">
+                    Após a cerimônia, os convidados serão recepcionados no Sindicato dos
+                    Pescadores<br />
+                    Rua Dom Afonso, Bairro Alcântara, 1305.
+                </p>
+            </section>
+
+            <p class="convite-versiculo">
+                “Agora, pois, permanecem a fé, a esperança e o amor, estes três,<br />
+                mas o maior destes é o amor.”<br />
+                <span>– 1 Coríntios 13:13</span>
+            </p>
+        </div>
+    </main>
+
+    <!-- SCRIPT DE ABERTURA E EFEITOS -->
+    <script>
+        /* --- 1. ABERTURA DAS PORTAS 3D --- */
+        const gatefoldContainer = document.getElementById("gatefold-container");
+        const openBtn = document.getElementById("open-doors-btn");
+        const mainContent = document.getElementById("main-content");
+
+        openBtn.addEventListener("click", () => {
+            gatefoldContainer.classList.add("gatefold-open");
+
+            setTimeout(() => {
+                gatefoldContainer.style.display = "none";
+                mainContent.classList.remove("opacity-0");
+                initSparkleParticles();
+            }, 1200);
+        });
+
+
+        /* --- ANIMAÇÃO DE BRILHOS / PARTÍCULAS --- */
+        let canvas,
+            ctx,
+            particles = [];
+        function initSparkleParticles() {
+            canvas = document.getElementById("sparkle-canvas");
+            ctx = canvas.getContext("2d");
+
+            resizeCanvas();
+            window.addEventListener("resize", resizeCanvas);
+
+            const count = window.innerWidth < 640 ? 25 : 40;
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.5 + 0.5,
+                    color: "#ab3d57",
+                    alpha: Math.random() * 0.6 + 0.2,
+                    speedY: -(Math.random() * 0.4 + 0.1),
+                    speedX: Math.random() * 0.4 - 0.2,
+                });
+            }
+
+            animateParticles();
+        }
+
+        function resizeCanvas() {
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p) => {
+                p.y += p.speedY;
+                p.x += p.speedX;
+
+                if (p.y < 0) {
+                    p.y = canvas.height;
+                    p.x = Math.random() * canvas.width;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = "#ab3d57";
+                ctx.fill();
+                ctx.restore();
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+    </script>
+</body>
+
+</html>
