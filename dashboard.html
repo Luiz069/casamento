@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+
+            text-transform: capitalize;
+
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .preview {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: auto;
+
+
+        }
+
+        iframe {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-transform: capitalize;
+
+        }
+
+        @media (max-width: 768px) {
+            section {
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            .preview {
+                width: 100%;
+            }
+
+            iframe {
+                width: 100%;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>design de convites</h1>
+
+    <section>
+        <button onclick="window.location.href='verde.html'" class="btn btn-primary">
+            <div class="preview">
+                <p>arte verde</p>
+                <!-- Exemplo de preview de uma página externa -->
+                <iframe src="verde.html" width="600" height="400" title="Preview do Site"
+                    style="pointer-events: none; border: none;" tabindex="-1">
+                </iframe>
+            </div>
+        </button>
+
+        <button onclick="window.location.href='marsala.html'" class="btn btn-primary">
+            <div class="preview">
+                <p>arte marsala</p>
+                <!-- Exemplo de preview de uma página externa -->
+                <iframe src="marsala.html" width="600" height="400" title="Preview do Site"
+                    style="pointer-events: none; border: none;" tabindex="-1">
+                </iframe>
+            </div>
+        </button>
+
+        <button onclick="window.location.href='branco.html'" class="btn btn-primary">
+            <div class="preview">
+                <p>arte branco</p>
+                <!-- Exemplo de preview de uma página externa -->
+                <iframe src="branco.html" width="600" height="400" title="Preview do Site"
+                    style="pointer-events: none; border: none;" tabindex="-1">
+                </iframe>
+            </div>
+        </button>
+
+
+
+        <button onclick="window.location.href='conviteDC.html'" class="btn btn-primary">
+            <div class="preview">
+                <p>Novo teste
+                </p>
+                <!-- Exemplo de preview de uma página externa -->
+                <iframe src="conviteDC.html" width="600" height="400" title="Preview do Site"
+                    style="pointer-events: none; border: none;" tabindex="-1">
+                </iframe>
+            </div>
+        </button>
+
+    </section>
+</body>
+
+</html>
