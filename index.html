@@ -436,10 +436,21 @@
                 display: none;
             }
         }
+
+        /* Cor ao selecionar textos */
+        ::selection {
+            background-color: #ab3d57;
+            color: #ffffff;
+        }
+
+        ::-moz-selection {
+            background-color: #ab3d57;
+            color: #ffffff;
+        }
     </style>
 </head>
 
-<body class="relative selection:bg-gold-400 selection:text-white overflow-x-hidden">
+<body class="relative overflow-x-hidden">
     <!-- Canvas para Partículas de Brilho -->
     <canvas id="sparkle-canvas"></canvas>
 
